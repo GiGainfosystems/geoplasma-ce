@@ -1,0 +1,62 @@
+.bigtile, .bigtileblue {
+  width: 100%;
+  background: #fafafa;
+  min-height: 200px;
+  transition: all .3s ease-in-out;
+  box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+  cursor: pointer;
+  margin: 0 0 20px 0;
+}
+
+.bigtile:hover {
+  transform: scale(1.05);
+}
+
+.bigtile:hover .icon, .bigtileblue:hover .icon {
+  color: #1a9963;
+}
+
+.bigtile h3 {
+  color: #FFF;
+  background: rgba(0,22,61,.8);
+  padding: 10px;
+  font-size: 16px;
+  margin: 0;
+}
+
+.bigtile .icon, .bigtileblue .icon {
+  color: #aaa;
+  width: 100%;
+  font-size: 92px;
+  padding: 20px 0;
+  transition: all .3s ease-in-out;
+}
+
+.bigtile .categorie-description, .bigtileblue .categorie-description {
+  background: #f4f4f4;
+  text-align: left;
+  padding: 10px;
+  color: #444;
+  font-size: 15px;
+  border-top: 1px solid #cdcdcd;
+}
+
+.bigtile .categorie-description p {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.bigtileblue {
+  background: rgba(0,22,61,1);
+}
+
+.bigtileblue .icon {
+    color: #f3f3f3;
+}
+
+.bigtileblue .categorie-description {
+    background: #334462;
+    color: #f3f3f3;
+    border-top: 1px solid #334462;
+    font-size: 15px;
+}

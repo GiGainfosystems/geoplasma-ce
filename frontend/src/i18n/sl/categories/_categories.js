@@ -1,0 +1,3 @@
+const categories = [{"key":"knowledgerepository.title","string":"Repozitorij"},{"key":"knowledgerepository.teaser","string":"Poišči literaturo, članke, smernice in drugo gradivo na temo plitve geotermalne energije."},{"key":"knowledgerepository.link","string":"Pojdi v repozitorij"},{"key":"yellowpages.title","string":"Rumene strani"},{"key":"yellowpages.teaser","string":"Poišči lokane in mednarodne strokovnjake, projektante, inštalaterje ali uradne pooblaščence."},{"key":"yellowpages.link","string":"Pojdi na rumene strani"},{"key":"events.title","string":"Dogodki"},{"key":"events.link","string":"Pojdi na dogodke"},{"key":"events.teaser","string":"Poišči zanimive dogodke na območju Evrope na temo plitve geotermalne energije."}]
+
+export default categories

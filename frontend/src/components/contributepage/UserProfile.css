@@ -1,0 +1,41 @@
+.user-profile {
+  width: 100%;
+  margin: 0 auto;
+  background: #f3f3f3;
+  padding: 20px;
+  border: 1px solid #cdcdcd;
+}
+
+.user-profile-item, .form-item {
+
+  font-size: 14px;
+}
+
+.user-profile-item img {
+  max-width: 100%;
+
+}
+
+.flash-message {
+  margin: 20px 0;
+  text-align: center;
+  transition: all .2s ease-in-out;
+}
+
+.flash-green {
+  background: #1a9963;
+}
+
+.flash-red {
+  background: #777;
+}
+
+.flash-message h3 {
+  background: rgba(0,0,0,0);
+  font-weight: 400;
+  font-size: 14px;
+}
+.flash-message h3 span {
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -1,0 +1,1073 @@
+.webgis-container {
+    flex: 1 1 auto;
+    text-align: left;
+    position: relative;
+    background: #cdcdcd;
+    height: calc(100% - 51px)
+}
+
+.webgis {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+}
+
+.webgis .webgis-header {
+    flex: 0 1 auto;
+    z-index: 9999;
+}
+
+.webgis-header .Header {
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.webgis-menu {
+    position: absolute;
+    left: 3%;
+    top: 2%;
+    z-index: 997;
+    max-height: 85%;
+    width: 23%;
+    max-width: 400px;
+    background: rgba(26,153,99,1);
+    box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+    overflow-y: auto;
+}
+
+
+
+.leaflet-container {
+    height: 100%;
+}
+
+.webgis-menu h2, .webgis-legend h2 {
+    margin: 10px 0;
+    padding: 0 6px 0 24px;
+    color: #fafafa;
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.webgis-menu-header {
+    background: #fafafa;
+    position: relative;
+}
+
+.toggle-area {
+    width: 90%;
+    display: block;
+    margin: 10px auto 0 auto;
+}
+
+.webgis-menu h2.area-name {
+    margin: 0;
+    padding: 10px 10px;
+    background: #fff;
+    color: #777;
+    position: relative;
+    width: 100%;
+    font-size: 14px;
+}
+
+.popup-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.popup-buttons button {
+    width: 100%;
+}
+
+.popup-buttons a {
+    width: 48%;
+}
+
+.webgis-menu h2.area-name i {
+    margin-right: 10px;
+}
+
+.webgis-menu h2.area-name span.switch-dialog {
+    position: absolute;
+    right: 0;
+    top: 8px;
+
+    background: #fff;
+    cursor: pointer;
+}
+
+.webgis-menu h2.area-name span.area-title {
+    background: #fff;
+    color: #777;
+    cursor: pointer;
+}
+
+.webgis-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.webgis-menu ul li {
+    background: #fafafa;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 300;
+    border-bottom: 1px solid #cdcdcd;
+    cursor: pointer;
+}
+
+.webgis-menu ul.layer-list li span, ul.layer-list li ul.webgis-submenu li span{
+    padding: 10px 6px 10px 24px;
+    display: block; 
+    max-width: 100%;
+}
+
+.webgis-menu ul.experts-local li {
+    padding: 10px 6px 10px 24px;
+}
+
+.webgis-menu ul li span.expert-count {
+    display: inline-block;
+    width: auto;
+    padding: 4px 8px;
+}
+
+.webgis-menu ul li:hover {
+    background: #f3f3f3;
+}
+
+.webgis-menu ul li:first-child {
+    border-top: 1px solid #cdcdcd;
+}
+
+.webgis-menu ul li.submenu-active {
+    background: #f3f3f3;
+}
+
+.webgis-menu ul li.submenu-active ul li {
+    background: #f3f3f3;
+    border-bottom: 0;
+    font-size: 14px;
+    padding-left: 24px;
+    position:relative;
+}
+
+.webgis-menu ul li.submenu-active ul li:hover {
+    background: #cdcdcd;
+}
+
+.webgis-menu ul li.active-layer {
+    color: rgba(0,22,61,1);
+    font-weight: 700;
+}
+
+.webgis-menu ul li.active-layer span:not(.expert-count):not(.field-measurement):before {
+    display: block;
+    width: 14px;
+    height: 14px;
+    content: '\f105';
+    position: absolute;
+    left: 35px;
+    font-family: "Font Awesome 5 Free";
+}
+
+.webgis-menu ul li.sublayer-children ul li.active-layer span:not(.expert-count):before {
+    left: 59px;
+}
+
+span.field-measurement i {
+    margin-right: 5px;
+}
+
+.webgis-menu ul li.submenu-active ul li:first-child {
+    border-top: 0;
+}
+
+.address-search form {
+    background: rgba(0,22,61,1);
+    padding: 6px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    position: relative;
+}
+
+.address-search input {
+    width: 85%;
+    margin: 0;
+}
+
+.address-search .btn-blue {
+    width: auto;
+}
+
+.legend {
+    position: absolute;
+    width: 23%;
+    z-index: 999;
+    bottom: 5%;
+    right: 1%;
+    background: #fff;
+    /*border: 1px solid #cdcdcd;*/
+    box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+    overflow-y: auto;
+}
+
+.legend p {
+    padding: 10px 80px 10px 10px;
+    font-size: 14px;
+    margin: 0;
+    background: rgba(26,153,99,1);
+    color: #f3f3f3;
+    position: relative;
+}
+
+.legend p span {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+}
+
+.legend p span .btn-blue {
+    padding: 6px;
+    font-size: 12px;
+}
+
+span.legend-icon {
+    position: absolute;
+    display: block;
+    left: 6px;
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(0,22,61,1);
+    background: white;
+}
+
+.error-popup {
+    position: absolute;
+    left: 15px;
+    top: 80px;
+    z-index: 9999;
+    font-size: 14px;
+    color: #fafafa;
+    background: #b54949;
+    padding: 6px;
+}
+
+.error-popup:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 45%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #b54949 transparent;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 0;
+    padding: 0;
+}
+
+.geoplasma-popup-content {
+    padding: 10px;
+}
+
+
+.leaflet-popup-content {
+    margin: 0;
+}
+
+.leaflet-popup-content h3 {
+    padding-right: 30px;
+}
+
+.leaflet-popup-content p {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+ul.legend-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.legend-list li {
+    margin: 0 0 5 0;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 20px;
+    vertical-align: text-top;
+    font-weight: 300;
+}
+
+ul.legend-list li span {
+    display: inline-block;
+    width: 16px;
+    height: 12px;
+    margin-right: 5px;
+    vertical-align: middle;
+    border: 1px solid #aaa;
+    opacity: 0.6;
+}
+
+.report-map {
+    margin-top: 20px;
+}
+
+h4.h4-green {
+    background: #1a9963;
+    text-align: center;
+}
+
+.webgis-metadata {
+    position: absolute;
+    z-index: 9999999999;
+    top: 0; left: 0; bottom: 0; right: 0;
+    width: 450px;
+    margin: auto;
+    height: 250px;
+    overflow-x: scroll;
+    background: #fafafa;
+    box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+}
+
+.webgis-metadata-large {
+    height: 70%;
+}
+
+.webgis-metadata table tr td {
+    border-bottom: 1px solid #cdcdcd;
+    padding: 5px 10px;
+}
+
+
+.webgis-metadata .btn-green {
+    display: block;
+    margin: 15px auto;
+}
+
+.webgis-metadata a {
+    font-weight: 700;
+}
+
+.webgis-metadata table {
+    border: 0;
+}
+
+.webgis-metadata h3 button {
+    position: absolute;
+    right: 5px;
+    top: 7px;
+    padding: 3px;
+    background: #777;
+}
+
+
+button:active {
+    transform: scale(.9);
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    top: 8px;
+    right: 5px;
+}
+.expert-profile {
+  padding: 25px 15px 15px 15px;
+}
+
+.expert-profile p {
+  font-weight: 300;
+}
+
+.expert-list {
+  background: #f3f3f3;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.expert-list ul {
+  padding: 0;
+  margin: 0 0 0 20px;
+}
+
+.expert-list ul li {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.expert-profile a {
+  color: rgba(0,22,61,1);
+  font-weight: 700;
+}
+
+form {
+  width: 100%;
+}
+
+ul.legend-list li span.pilot-area-outline {
+  border: 3px solid rgba(0,22,61,1);
+}
+
+span.expert-count {
+  font-size: 10px;
+  padding: 4px 8px;
+  background: rgba(0,22,61,1);
+  color: #fafafa;
+  border-radius: 99px;
+  margin-left: 10px;
+}
+
+.gis-overlay-dialog h2 {
+  background: #1a9963;
+  color: #fafafa;
+  padding: 15px;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0;
+  padding-right: 100px;
+  position: relative;
+}
+
+.gis-overlay-dialog h2 button {
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  font-size: 11px;
+  width: auto;
+}
+
+.gis-overlay-dialog-content {
+  background: #f3f3f3;
+}
+
+.gis-overlay-dialog-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gis-overlay-dialog-content ul li {
+  width: 100%;
+  border-bottom: 1px solid #cdcdcd;
+  padding: 15px;
+  transition: all .2s linear;
+  cursor: pointer;
+}
+
+.gis-overlay-dialog-content ul li:hover {
+  background: #fafafa;
+}
+
+.overlay-content p {
+    color: #f3f3f3;
+    text-align: left;
+    padding: 10px 20px;
+}
+
+.overlay-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.overlay-content ul li {
+    color: #777;
+    padding: 10px 0;
+    width: 100%;
+    background: #f3f3f3;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.report-pane {
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 600px;
+    height: 100%;
+    z-index: 999;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+.report-pane .close-button {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    display: block;
+    content: " ";
+    width: 30px;
+    height: 30px;
+    background: #000;
+}
+
+.hide-pane {
+    right: -620px;
+}
+
+.blur-me {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,.6);
+    z-index: 998;
+}
+
+.leaflet-top {
+    z-index: 998;
+}
+
+.report-pane h3.flexbox-headline {
+    margin-top: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+h3.flexbox-headline .btn-red {
+    font-size: 12px;
+    padding: 4px 6px;
+    padding-right: 35px;
+}
+
+h3.flexbox-headline .btn-icon:after {
+    height: 23px;
+    line-height: 23px;
+}
+
+.report-pane h3 .headline-button {
+    position: relative;
+}
+
+.report-pane .headline-buttons {
+    right: 10px;
+}
+
+.report-pane .attribute-table table {
+    border: 0;
+}
+
+.report-pane .attribute-table tr td {
+    border-left: 0;
+    border-right: 0;
+    background: #fff;
+}
+
+.report-pane .conflict-attribute span {
+    border-radius: 99px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border: 1px solid #cdcdcd;
+}
+
+.report-pane .width-100 {
+    margin-bottom: 20px;
+}
+
+.report-pane .contact-details p {
+    margin: 10px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.report-pane .report-map {
+    height: 150px;
+    padding: 0 10px;
+}
+
+td.text-right {
+    text-align: right;
+}
+
+.info-table table, .info-table td {
+    border: 0;
+}
+
+.info-table td {
+    padding: 10px;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.info-table td p {
+    padding: 5px 0;
+    margin: 0;
+}
+
+.info-table tr:first-child td {
+    border-top: 1px solid #f3f3f3;
+}
+
+.info-table .reports-box-content span {
+    border-radius: 99px;
+    display:inline-block;
+    width: 40px;
+    height: 40px;
+    transition: all .2s ease-in-out;
+    position: relative;
+    border: 1px solid #cdcdcd;
+}
+
+.attribute-table tr:hover > td span {
+    transition: all .2s ease-in-out;
+}
+
+
+.legend {
+    z-index: 998;
+}
+
+.report-pane .reports-box-content span {
+    margin-right: 0;
+}
+
+.report-pane .reports-box {
+    background: #fff;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.tooltip-note {
+    background: #f3f3f3;
+    padding: 5px;
+    position: absolute;
+    top: -30px;
+    right: 20px;
+    min-width: 220px;
+    width: auto;
+    text-align:center;
+    z-index: 9999;
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+    display: none;
+}
+
+.attribute-table span:hover > .tooltip-note {
+    display: block;
+}
+
+.cell-with-border-bottom i {
+    font-size: 30px;
+    color: #aaa;
+}
+
+.report-flexbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.report-pane .report-flexbox {
+    padding: 10px 10px 0 10px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 0px;
+}
+
+.report-legend span {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #aaa;
+    border-radius: 99px;
+    margin-right: 10px;
+}
+
+.report-legend ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.report-legend ul li {
+    margin-bottom: 10px;
+}
+
+.coordinates p {
+    margin-bottom: 5px;
+}
+
+.close-pane {
+    font-size: 30px;
+    color: #aaa;
+    transition: all .2s ease-in-out;
+    background: #fff;
+}
+
+.close-pane:hover {
+    color: #333;
+}
+
+.webgis-menu h2.area-name span.show-menu-items {
+    display: none;
+}
+
+  .info-pane-padding {
+      padding: 10px;
+  }
+
+  .info-pane h3 {
+      margin-bottom: 10px;
+  }
+
+  .overlay-content ul li {
+      padding: 10px;
+      border-bottom: 1px solid #f3f3f3;
+  }
+
+  .text-left {
+      text-align: left;
+  }
+
+  .text-right {
+      text-align: right;
+  }
+
+  .text-centered {
+    text-align:center;
+    font-size: 14px;
+}
+
+.webgis-menu ul li.submenu-active ul li.sublayer-children {
+    padding-left: 0;
+}
+
+.webgis-menu ul li.submenu-active ul li.sublayer-children span {
+    margin-left: 24px;
+}
+
+.contact-details img {
+    width: 100%;
+}
+
+.explanatory {
+    display: inline-block;
+}
+
+.info-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 50%;
+    width: 340px;
+    top: 20px;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background: rgba(26,153,99,1);;
+    box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+    z-index: 998;
+    padding-right: 10px;
+}
+
+.info-overlay p {
+    color: #fafafa;
+    padding: 10px;
+    margin: 0;
+}
+
+.info-text {
+    width: 290px;
+}
+
+.info-overlay .btn-blue {
+    display: inline-block;
+    width: 35px;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .webgis-menu {
+        width: 30%;
+    }
+
+    .legend {
+        width: 30%;
+    }
+
+    .info-overlay {
+        left: 70%;
+        top: 70px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .info-overlay {
+        left: 50%;
+        top: 100px;
+    }
+}
+
+.explanatory {
+    position: relative;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.explanatory .btn-blue {
+    font-size: 10px;
+}
+
+.explanatory .explanatory-note-show {
+    position: absolute;
+    top: 33px;
+    left: -20px;
+    padding: 0 10px;
+    width: 350px;
+    background: #f3f3f3;
+    border: 1px solid #cdcdcd;
+    z-index: 9999999999999;
+    box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+}
+
+.explanatory-note-show:after {
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 23px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 10px 5px;
+    border-color: transparent transparent #f3f3f3 transparent;
+}
+
+.explanatory-note-show:before {
+    display: block;
+    position: absolute;
+    top: -11px;
+    left: 22px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 6px 11px 6px;
+    border-color: transparent transparent #cdcdcd transparent;
+}
+
+.ex-note-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.dont-show {
+    display: none;
+}
+
+.explanatory p {
+    margin: 10px 20px 10px 10px;
+}
+
+.explanatory .btn {
+    padding: 3px 6px;
+}
+
+.field-measurement {
+    padding: 0px;
+}
+
+.field-measurement table tr td {
+    padding: 4px;
+    width: 50%;
+}
+
+.field-measurements-between {
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.field-measurement h2 {
+    margin-top: 0;
+}
+
+.field-measurement table {
+    border: 0;
+    margin-bottom: 20px;
+}
+
+.field-measurement table tr:nth-child(odd) td {
+    background: #f3f3f3;
+}
+
+
+#borehole svg text {
+    fill: black;
+}
+
+.unit-color {
+    max-width: 50px;
+    overflow: hidden;
+    color: rgba(0,0,0,0); 
+}
+
+.report-pane .contact-details .unit-table p {
+    margin: 0;
+}
+
+.unit-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.unit-table tr td {
+    border-bottom: 1px solid #aaa;
+}
+
+.unit-table {
+    margin-top: 20px; 
+}
+
+.borehole-button {
+    display: block;
+    margin: 30px auto;
+}
+
+.borehole-section i, .borehole-info i {
+    transform: rotate(-45deg)
+}
+
+.borehole-section {
+    overflow-x: hidden;
+}
+
+.borehole-section img {
+    width: auto;
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .webgis-menu {
+        width: 80%;
+    }
+    .menu-items {
+        max-height: 0px;
+        transition: all .4s ease-in-out;
+        height: 0;
+    }
+    .webgis-menu h2.area-name span.show-menu-items {
+        display: inline-block;
+        width: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+        right: 10px;
+    }
+    .webgis-menu h2.area-name span.show-menu-items i {
+        margin-right: 0;
+    }
+    .webgis-menu h2.area-name span.show-menu-items:hover {
+        transform: scale(1.5);
+    }
+
+    .webgis-menu h2.area-name span.show-menu-items:active {
+        top: 4px;
+    }
+    .webgis-menu h2.area-name span.switch-dialog {
+        display: none;
+        
+    }
+    .show-menu {
+        max-height: 700px;
+        height: auto;
+    }
+
+    .legend {
+        width: 90%;
+        right: 5%;
+    }
+    .webgis-container {
+        height: calc(100% - 91px);
+    }
+
+    .legend-list {
+        height: 0;
+    }
+
+    .metadata-button {
+        display: none;
+    }
+
+    .legend p span.show-legend-items {
+        top: 10px;  
+        right: 10px;
+        width: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
+
+    .legend p span.show-legend-items:hover {
+        transform: scale(1.5);
+    }
+
+    .legend p span.show-legend-items:active {
+        top: 9px;
+    }
+
+    .show-list {
+        height: auto;
+    }
+
+    .report-pane {
+        width: 90%;
+        font-size: 12px;
+    }
+    .report-pane .report-flexbox {
+        font-size: 12px;
+    }
+    .hide-pane {
+        right: -95%;
+    }
+
+    .report-pane h3 {
+        font-size: 12px;
+    }
+    .report-pane h3.flexbox-headline .headline-buttons {
+        top:5px;
+        right: 5px;
+    }
+
+    .report-pane table, .report-pane .contact-details p, .attribute-table tr td {
+        font-size: 12px;
+    }
+
+    .close-pane {
+        background: #fff;
+    }
+
+    .coordinates i {
+        display: none;
+
+    }
+    .coordinates {
+        word-break: normal;
+    }
+
+    .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+        border: 0;
+        box-shadow: 0 2px 14px 0 rgba(0,0,0,.2)
+    }
+
+    body, html {
+        overflow: hidden;
+    }
+
+  }

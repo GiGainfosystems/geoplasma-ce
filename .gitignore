@@ -1,0 +1,8 @@
+node_modules/
+id_rsa
+backend/composer.lock
+backend/storage
+gst/
+*.xlsx
+*.xls
+*.csv

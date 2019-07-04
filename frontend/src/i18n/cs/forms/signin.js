@@ -1,0 +1,4 @@
+
+const signin = [{"key":"forms.signin.title","string":"Přihlašte se"},{"key":"forms.signin.text","string":"Pokud již máte platný účet, přihlašte se pro vkládání příspěvků do odborné platformy nebo aktualizaci profilu. "},{"key":"forms.signin.button.signin","string":"Přihlaste se"},{"key":"forms.signin.forgot_password","string":"Zapomenuté heslo? "},{"key":"forms.signin.error.message.credentials","string":"Neplatné přihlášení. Zkontrolujte si prosím zadaný email a heslo. "},{"key":"forms.signin.error.message.general_error","string":"Došlo k chybě, kontaktujte prosím administrátora. "},{"key":"forms.signin.error.message.not_confirmed","string":"Váš účet zatím nebyl aktivován. Překontrolujte prosím email, zda Vám byl doručen potvrzující mail. "},{"key":"forms.signin.error.message.deactivated","string":"Váš účet byl deaktivován."}]
+
+export default signin

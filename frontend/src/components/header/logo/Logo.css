@@ -1,0 +1,56 @@
+.Logo {
+  width: 230px;
+  padding: 10px 20px 0 20px;
+  background: #FFF;
+  box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.Logo img {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .Logo {
+    position: absolute;
+    box-shadow: 0 0 0 0;
+    padding: 5px 30px 0 30px;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+
+@media (max-width: 668px) {
+  .Logo {
+    width: 150px;
+    margin: 10px auto;
+    display: block;
+    position: absolute;
+    top:10px;
+    right: 10px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 530px) {
+  .Logo {
+    width: 120px;
+  }
+}
+
+@media (max-width: 490px) {
+  .Logo {
+    width: 100px;
+    top: 35px;
+  }
+}
+
+@media (max-width: 360px) {
+  .Logo {
+    width: 80px;
+    top: 31px;
+  }
+}

@@ -1,0 +1,53 @@
+.attribute-table table {
+    border: 1px solid #e8e8e8;
+    width: 100%;
+}
+
+.attribute-table .thead td {
+    background: #e8e8e8;
+    color: #777;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+}
+
+.attribute-table .thead td.text-left {
+    text-align: left;
+}
+
+.attribute-table table tr td.text-left {
+    text-align: left;
+}
+
+
+.attribute-table table tr td.text-headline {
+    font-weight: 700;
+}
+
+.attribute-table tr td {
+    background: #fafafa;
+    font-size: 14px;
+    border-top: 1px solid #e8e8e8;
+/*    border-bottom: 1px solid #cdcdcd;*/
+}
+
+.attribute-table tr.even td {
+    background: #f3f3f3;
+}
+
+
+.attribute-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.attribute-table tr td.text-center {
+    text-align: center;
+}
+
+.attribute-table tr td.border-right:last-child {
+/*    border-right: 0;*/
+}
+
+p.margin-top {
+  margin-top: 10px;
+}

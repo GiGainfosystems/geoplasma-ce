@@ -1,0 +1,44 @@
+.Select-control {
+  background-color: #1a9963;
+  border-radius: 0;
+  border: 0;
+  margin-top: 5px;
+}
+
+.is-open > .Select-control {
+  background: #1a9963;
+}
+
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+  color: #fff;
+}
+
+.has-value.Select--single > .Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+  color: #fff;
+}
+
+.Select-arrow {
+  border-color: #fff transparent transparent;
+}
+
+.is-open > .Select-control .Select-arrow {
+  border-color: transparent transparent #fff;
+}
+
+h4 {
+  color: #f3f3f3;
+  background: rgba(0,22,61,.8);
+  padding: 10px;
+  font-size: 16px;
+  text-align: left;
+}
+
+
+.react-tagsinput {
+    margin-top: 5px;
+    padding-left: 6px;
+}
+
+.react-tagsinput input {
+    padding-left: 0;
+}

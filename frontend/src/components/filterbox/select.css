@@ -1,0 +1,11 @@
+.Select.is-focused > .Select-control {
+    background: #1a9963;
+}
+
+.Select.is-focused:not(.is-open) > .Select-control {
+    background: #1a9963;
+}
+
+.Select-control .Select-input:focus {
+    background: #1a9963;
+}

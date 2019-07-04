@@ -1,0 +1,61 @@
+.react-tagsinput-tag {
+  background-color: #1a9963;
+  color: #f3f3f3;
+  border: 1px solid #1a9963
+}
+
+.react-tagsinput {
+  overflow: visible;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-left: 0;
+}
+
+.react-tagsinput--focused > span > div > input {
+
+}
+
+.react-tagsinput--focused {
+  border: 1px solid #cdcdcd;
+
+}
+
+.react-autosuggest__container {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap
+}
+
+.react-autosuggest__container input {
+  background: #fff;
+  border: 0;
+  margin-bottom: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  position: absolute;
+  top: 43px;
+  left: 0;
+  padding: 0;
+  background: #fff;
+  z-index: 99999999;
+  border-right: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
+  border-left: 1px solid #cdcdcd;
+}
+
+.react-autosuggest__suggestions-container ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.react-autosuggest__suggestions-container ul li {
+  padding: 10px;
+  border-bottom: 1px solid #f3f3f3;
+  cursor: pointer;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background: #f3f3f3;
+}

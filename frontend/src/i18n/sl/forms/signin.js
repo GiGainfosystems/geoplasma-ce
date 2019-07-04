@@ -1,0 +1,4 @@
+
+const signin = [{"key":"forms.signin.title","string":"Vpis"},{"key":"forms.signin.text","string":"Če že imate račun na tej platformi, se prosim vpišite in prispevajte vsebine na platformiza strokovnjake ali dodajte oz. posodobite svoj profil."},{"key":"forms.signin.button.signin","string":"Vpis"},{"key":"forms.signin.forgot_password","string":"Pozabljeno geslo?"},{"key":"forms.signin.error.message.credentials","string":"Neveljavne poverilnice. Prosim preverite vaš elektronski naslov in geslo."},{"key":"forms.signin.error.message.general_error","string":"Prišlo je do napake, prosimo kontaktirajte skrbnika spletne strani."},{"key":"forms.signin.error.message.not_confirmed","string":"Vaš račun še ni potrjen. Prosimo preverite svojo elektronsko pošto za potrditveno sporočilo."},{"key":"forms.signin.error.message.deactivated","string":"Vaš računje bil ukinjen. "},{"key":null,"string":null},{"key":null,"string":null}]
+
+export default signin

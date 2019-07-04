@@ -1,0 +1,27 @@
+FROM geoplasma:v2
+
+RUN a2dissite 001.api.geoplasma.dev.conf
+RUN a2dissite 001.api.geoplasma.dev.ssl.conf
+RUN a2dissite 002.frontend.geoplasma.dev.conf
+RUN a2dissite 002.frontend.geoplasma.dev.ssl.conf
+RUN a2dissite 003.api-stage.geoplasma.dev.conf
+RUN a2dissite 004.frontend-stage.geoplasma.dev.conf
+RUN a2dissite 006.downloads.geoplasma.ssl.conf
+RUN pecl install xdebug-2.6.0 && docker-php-ext-enable xdebug
+
+RUN echo "Listen 9000 9001" >> /etc/apache2/ports.conf
+
+ADD 001.api-stage.geoplasma.dev.conf /etc/apache2/sites-available/
+ADD 002.frontend-stage.geoplasma.dev.conf /etc/apache2/sites-available/
+
+RUN a2ensite 001.api-stage.geoplasma.dev.conf
+RUN a2ensite 002.frontend-stage.geoplasma.dev.conf
+
+
+#VOLUME ["/var/lib/postgresql/postgresqldata"]
+#EXPOSE 80 8080 8778 5432
+EXPOSE 9000 9001
+ADD geoplasma-entry.sh /usr/local/bin/geoplasma-entry.sh
+RUN chmod +x /usr/local/bin/geoplasma-entry.sh
+ENTRYPOINT ["/usr/local/bin/geoplasma-entry.sh"]
+CMD ["/usr/local/bin/geoplasma-entry.sh"]

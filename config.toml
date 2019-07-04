@@ -1,0 +1,14 @@
+[server]
+ip = "::"
+port = 50051
+cert_path = "/etc/GiGa/ssl/server.p12"
+cert_pwd = "G3opl4sma!"
+license_path = "/etc/GiGa/license/gst3.lic"
+
+[database]
+url = "postgresql://gst:gst@localhost/gst"
+
+[storage]
+tile_size = 25000
+data_path = '/var/lib/gstdata/'
+cpu_count = 4

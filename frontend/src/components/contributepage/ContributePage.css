@@ -1,0 +1,34 @@
+.contribute-section {
+  
+  padding: 20px 0;
+  width: 90%;
+  margin: 0 auto;
+}
+
+table.datacheck td {
+  padding: 5px;
+}
+
+table.datacheck {
+  margin-bottom: 20px;
+}
+
+table.datacheck tr td:first-child {
+  width: 50%;
+}
+
+table.datacheck td span {
+  cursor: pointer;
+}
+
+table.datacheck td span.confirmed {
+  color: #1a9963;
+}
+
+table.datacheck td span.rejected {
+  color: rgb(255, 61, 81);
+}
+
+table.datacheck tr:nth-child(2n) td {
+  background: #f3f3f3;
+}

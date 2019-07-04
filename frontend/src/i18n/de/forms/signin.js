@@ -1,0 +1,4 @@
+
+const signin = [{"key":"forms.signin.title","string":"Anmelden"},{"key":"forms.signin.text","string":"Wenn Sie bereits über ein Benutzerkonto auf dieser Plattform verfügen, melden Sie sich an, um Ihr Profil für die Gelben Seiten zu verändern oder Inhalte hinzuzufügen."},{"key":"forms.signin.button.signin","string":"Anmelden"},{"key":"forms.signin.forgot_password","string":"Passwort vergessen?"},{"key":"forms.signin.error.message.credentials","string":"Ungültige Nutzerdaten. Bitte überprüfen Sie E-Mailadresse und Passwort."},{"key":"forms.signin.error.message.general_error","string":"Es ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Seitenbetreiber."},{"key":"forms.signin.error.message.not_confirmed","string":"Ihr Benutzerkonto ist noch nicht bestätigt. Bitte folgen Sie dem Link in Ihrem Bestätigungs-E-mail."},{"key":"forms.signin.error.message.deactivated","string":"Ihr Benutzerkonto wurde deaktiviert."}]
+
+export default signin

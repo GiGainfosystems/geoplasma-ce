@@ -1,0 +1,19 @@
+.full-text span {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.full-text p {
+  line-height: 1.5;
+
+}
+
+.full-text-meta {
+  padding: 20px 0;
+  border-top: 1px solid #aaa;
+}
+
+.full-text-meta button {
+  margin-right: 15px;
+}

@@ -1,0 +1,40 @@
+.subheader {
+  margin-top: 70px;
+  width: 100%;
+  background: rgba(0,22,61,1);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 14px 0 rgba(0,0,0,.2);
+}
+
+.subheader h2 {
+  margin: 0 15px 0 0;
+  padding: 0;
+  color: #f3f3f3;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 28px;
+}
+
+.subheader a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+
+.btn-contribute {
+  border: 0;
+  background-color: #1a9963;
+  padding: 6px;
+  color: #f4f4f4;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-contribute:hover {
+  background: #106541;
+}

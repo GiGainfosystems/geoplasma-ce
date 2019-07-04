@@ -1,0 +1,256 @@
+const layers = [
+    {
+        "key": "conflict_map.label",
+        "string": "Conflict map"
+    },
+    {
+        "key": "webgis.layers",
+        "string": "Maps"
+    },
+    {
+        "key": "webgis.location_query",
+        "string": "Location specific information"
+    },
+    {
+        "key": "webgis.locationquery_text",
+        "string": "You can create a standard report with general information on this location and classified values or an advanced report with all actual values of the available attributes at this location."
+    },
+    {
+        "key": "webgis.standard_report",
+        "string": "Standard report"
+    },
+    {
+        "key": "webgis.advanced_report",
+        "string": "Advanced report"
+    },
+    {
+        "key": "webgis.legend",
+        "string": "Legend"
+    },
+    {
+        "key": "webgis.coordinates",
+        "string": "Coordinates"
+    },
+    {
+        "key": "webgis.loading",
+        "string": "Loading the value"
+    },
+    {
+        "key": "webgis.metadata",
+        "string": "Metadata"
+    },
+    {
+        "key": "webgis.close_metadata",
+        "string": "Close"
+    },
+    {
+        "key": "webgis.close_metadata",
+        "string": "Close"
+    },
+    {
+        "key": "search_address.label",
+        "string": "Search address"
+    },
+    {
+        "key": "search_address.notfound",
+        "string": "Address not found in pilot area!"
+    },
+    {
+        "key": "water_protection_areas_curative_drinking_water.label",
+        "string": "Water protection areas (curative, drinking water)"
+    },
+    {
+        "key": "natural_reserves__protection_areas.label",
+        "string": "Natural reserves / protection areas"
+    },
+    {
+        "key": "cavity_mining_areas.label",
+        "string": "Cavity, mining areas"
+    },
+    {
+        "key": "shallow_gas_leakage.label",
+        "string": "Shallow gas leakage"
+    },
+    {
+        "key": "landfills_contaminated_areas.label",
+        "string": "Landfills, contaminated areas"
+    },
+    {
+        "key": "top_of_a_geological_unit.label",
+        "string": "Top of a geological unit"
+    },
+    {
+        "key": "bulk_thermal_conductivity_for_a_specific_depth_interval.label",
+        "string": "Bulk thermal conductivity"
+    },
+    {
+        "key": "heat_transfer_rate_at_a_specific_depth_interval.label",
+        "string": "Heat transfer rate"
+    },
+    {
+        "key": "surface_temperature.label",
+        "string": "Surface temperature"
+    },
+    {
+        "key": "thermal_capacity__peak_load.label",
+        "string": "Thermal capacity - peak load"
+    },
+    {
+        "key": "thermal_capacity__base_load.label",
+        "string": "Thermal capacity - base load"
+    },
+    {
+        "key": "traffic_light_map_closed_loop_system.label",
+        "string": "Feasibility of a closed loop installation"
+    },
+    {
+        "key": "energy_content.label",
+        "string": "Energy content"
+    },
+    {
+        "key": "hydraulic_productivity_at_peak_load.label",
+        "string": "Hydraulic productivity at peak load"
+    },
+    {
+        "key": "thermal_productivity.label",
+        "string": "Thermal productivity"
+    },
+    {
+        "key": "limitation_of_drilling_depth.label",
+        "string": "Limitation of drilling depth"
+    },
+    {
+        "key": "confinedartesian_groundwater_areas.label",
+        "string": "Confined/artesian groundwater areas"
+    },
+    {
+        "key": "tectonics_faults.label",
+        "string": "Tectonics / faults"
+    },
+    {
+        "key": "landslides.label",
+        "string": "Landslides"
+    },
+    {
+        "key": "karst_areas.label",
+        "string": "Karst areas"
+    },
+    {
+        "key": "hydraulically_separated_aquifers_by_aquitards.label",
+        "string": "Hydraulically separatad aquifery by aquitards"
+    },
+    {
+        "key": "location_of_existing_utilizations.label",
+        "string": "Location of existing utilizations"
+    },
+    {
+        "key": "anthropogenic_lines_electricity_gas.label",
+        "string": "Anthropogenic lines"
+    },
+    {
+        "key": "aquifer_outline.label",
+        "string": "Aquifer outline"
+    },
+    {
+        "key": "existing_boreholes.label",
+        "string": "Existing boreholes"
+    },
+    {
+        "key": "groundwater_zones_of_problematic_chemistry.label",
+        "string": "Groundwater zones of problematic chemistry"
+    },
+    {
+        "key": "traffic_light_map_open_loop_system.label",
+        "string": "Feasibility of a closed loop installation"
+    },
+    {
+        "key": "traffic_light_map_open_loop_system.1",
+        "string": "Generally possible"
+    },
+    {
+        "key": "traffic_light_map_open_loop_system.2",
+        "string": "Additional information needed"
+    },
+    {
+        "key": "traffic_light_map_open_loop_system.3",
+        "string": "Not allowed"
+    },
+    {
+        "key": "report.standard.title",
+        "string": "Standard location specific report"
+    },
+    {
+        "key": "report.advanced.button",
+        "string": "Advanced report"
+    },
+    {
+        "key": "report.pdf.button",
+        "string": "Create PDF"
+    },
+    {
+        "key": "report.conflict_layer",
+        "string": "Conflict layers and possible conflicts"
+    },
+    {
+        "key": "report.non_conflict_layer",
+        "string": "Non-conflict layers"
+    },
+    {
+        "key": "report.table.attribute",
+        "string": "Attribute"
+    },
+    {
+        "key": "report.table.open_loop",
+        "string": "Open loop"
+    },
+    {
+        "key": "report.table.closed_loop",
+        "string": "Closed loop"
+    },
+    {
+        "key": "report.contact",
+        "string": "Contact to the local authority"
+    },
+    {
+        "key": "report.disclaimer.title",
+        "string": "Disclaimer"
+    },
+    {
+        "key": "report.disclaimer",
+        "string": "The thematic contents shown on our web portal intend to give an overview of potentials and conflicts of use associated to shallow geothermal energy. They do not replace detailed planning studies and must not be used for any detailed planning purpose and do not replace any approvals by competent legal authorities. The provider of the services does not take any liability for damages caused by an inappropriate use of the contents presented."
+    },
+    {
+        "key": "flood_risk.label",
+        "string": "Flood risk"
+    },
+    {
+        "key": "karst_areas_including_cavities.label",
+        "string": "Karst areas including cavities"
+    },
+    {
+        "key": "mining_areas.label",
+        "string": "Mining areas"
+    },
+    {
+        "key": "gas_emission.label",
+        "string": "Gas emission"
+    },
+    {
+        "key": "outline_of_groundwater_bodies_suitable_for_open_loop_systems.label",
+        "string": "Outline of groundwater bodies suitable for open loop systems"
+    },
+    {
+        "key": "underground_infrastructure.label",
+        "string": "Underground infrastructure"
+    },
+    {
+        "key": "location_of_existing_geothermal_utilizations.label",
+        "string": "Existing geothermal utilizations"
+    },
+    {
+        "key": "anthropogenic_lines_electricity_gas….label",
+        "string": "Anthropogenic lines"
+    },
+]
+
+export default layers

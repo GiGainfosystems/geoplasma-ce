@@ -1,0 +1,49 @@
+.Header {
+    background-color: #FFF;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+}
+
+.Header h1 {
+  margin: 0;
+  padding: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #444;
+}
+
+
+@media (max-width: 668px) {
+  .Header {
+    display: block;
+    padding: 0;
+  }
+}
+
+.cookie-warning {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 99999;
+    background: rgba(0,22,61,.8);
+    padding: 10px;
+    color: #f3f3f3;
+}
+
+.cookie-warning p {
+    margin: 0;
+}
+
+.cookie-warning a {
+    color: #1a9963
+}
+
+.cookie-warning button {
+    margin-left: 20px;
+    display: inline-block;
+}

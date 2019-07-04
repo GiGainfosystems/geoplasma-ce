@@ -1,0 +1,36 @@
+.footer {
+    background: rgba(0,0,0,0);
+    border-top: 1px solid #555;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer a {
+    color: #ddd;
+}
+
+.jump-to-top {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%,0);
+    height: 30px;
+    margin: auto;
+}
+
+.jump-to-top .btn-blue {
+    opacity: 0.9;
+}
