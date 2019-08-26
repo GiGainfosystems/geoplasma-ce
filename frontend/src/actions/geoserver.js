@@ -5,7 +5,7 @@ import config from '../config'
 import { compareData } from '../components/webgis/helper'
 import { saveAs } from 'file-saver'
 import { reverseGeocode } from './geocode'
-import proj4 from 'proj4';
+
 
 /**
  * Update the map props 
