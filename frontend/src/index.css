@@ -819,6 +819,10 @@ h2.no-result a {
     color: rgba(0,22,61,1);
 }
 
+a.model_link_3d {
+  color: #fafafa;  
+}
+
 .profile-teaser .third {
     word-wrap: break-word;
     width:40%;
