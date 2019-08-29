@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:7.2-apache-stretch
 CMD ["/bin/bash"]
 # the following fixes some issues with GBA's proxy and firewall, c.f. https://askubuntu.com/a/809808/648883
 RUN echo "Acquire::http::Pipeline-Depth 0;" >> /etc/apt/apt.conf.d/99fixbadproxy
