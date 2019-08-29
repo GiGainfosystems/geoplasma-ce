@@ -109,8 +109,8 @@ RUN ls
 #RUN apt-get update && apt-get install -y cmake-curses-gui libboost-all-dev librsvg2-2 librsvg2-bin librsvg2-dev libshp2 libshp-dev libxerces-c-dev libsqlite3-dev libssl-dev libssl-doc sqlite3 vim build-essential default-libmysqlclient-dev libcurl4-openssl-dev
 
 RUN mkdir /gst/
-RUN cd /gst/ && wget -O gst-server https://support.giga-infosystems.com/geoplasma/gst-server-3.2 && chmod +x gst-server
-RUN cd /gst && wget -O lib.tar.bz2 https://support.giga-infosystems.com/geoplasma/lib-3.2.tar.bz2
+RUN cd /gst/ && wget -O gst-server https://support.giga-infosystems.com/geoplasma/gst-server-3.3 && chmod +x gst-server
+RUN cd /gst && wget -O lib.tar.bz2 https://support.giga-infosystems.com/geoplasma/lib-3.3.tar.bz2
 RUN cd /gst && tar -xjf lib.tar.bz2
 
 RUN echo "/gst/lib/" >> /etc/ld.so.conf.d/gst.conf
