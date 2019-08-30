@@ -364,24 +364,32 @@ class SuperuserController extends Controller
           1
         );
         $response = json_decode($ret);
-        $client = new Client(['http_errors' => false]);
-        $res = $client->request('GET', $response->imageUrl);
-        $statuscode = $res->getStatusCode();
-        if($statuscode === 200) {
-            $data = $res->getBody();
-            $xml = simplexml_load_string($data);
-            $string = (string)$data;
-            $result = [
-                'data' => 'borehole',
-                'status' => true,
-                'message' => $string
-            ];
-        } else {
+        if ($response->errorCode !== 0 ) {
             $result = [
                 'data' => 'borehole',
                 'status' => false,
                 'message' => false
             ];
+        } else {
+            $client = new Client(['http_errors' => false]);
+            $res = $client->request('GET', $response->imageUrl);
+            $statuscode = $res->getStatusCode();
+            if($statuscode === 200) {
+                $data = $res->getBody();
+                $xml = simplexml_load_string($data);
+                $string = (string)$data;
+                $result = [
+                    'data' => 'borehole',
+                    'status' => true,
+                    'message' => $string
+                ];
+            } else {
+                $result = [
+                    'data' => 'borehole',
+                    'status' => false,
+                    'message' => false
+                ];
+            }
         }
         
     }
