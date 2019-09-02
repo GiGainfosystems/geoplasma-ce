@@ -199,7 +199,7 @@ class ReportPane extends React.Component {
     
             // Creating an Image Element
             var image = new Image();
-            image.src = 'data:image/svg+xml;base64,' + btoa(svg);
+            image.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
             // Width and height = width and height from the borehole
             image.width = 1000; 
             image.height = 1950;
