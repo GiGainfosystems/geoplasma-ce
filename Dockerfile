@@ -33,6 +33,8 @@ RUN wget https://github.com/apache/tomcat/archive/8.5.32.tar.gz -O /tmp/tomcat.t
 RUN cd /tmp && tar xvf tomcat.tar.gz
 RUN mv /tmp/tomcat-8.5.32 /home/tomcat/tomcat
 RUN echo "base.path=/home/tomcat/tomcat" > /home/tomcat/tomcat/build.properties
+## FIX the dependency of tomcat
+RUN sed -i -e 's/commons-daemon.version=1.1.0/commons-daemon.version=1.2.0/' /home/tomcat/tomcat/build.properties.default
 RUN cd /home/tomcat/tomcat/ && ant
 
 RUN wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.6.2/geoserver-2.6.2-war.zip -O /tmp/geoserver.zip
