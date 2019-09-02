@@ -17,7 +17,7 @@ class InfoPaneMap extends React.Component {
                 <Map zoomControl={false} ref='map_0' bounds={this.props.bounds} zoom={10}>
                     <ScaleControl position="bottomleft"></ScaleControl>
                     <GrayTile
-                        url='http://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                        url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
                         attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
                     />
                     <WMSTileLayer url={config.geoServerUrl+"/geoserver/general/wms"} format="image/png" layers="general:Pilot_Areas" transparent={true} opacity={1} />
