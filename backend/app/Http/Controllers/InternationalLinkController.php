@@ -10,7 +10,7 @@ use Excel;
 class InternationalLinkController extends Controller
 {
 
-    private $rsync = 'rsync -s -e "ssh -i /var/www/.ssh/id_rsa -q -o StrictHostKeyChecking=no" "pp10-giga@rsync.hidrive.strato.com:/public/inbox/';
+    private $rsync = 'rsync -s "/public/inbox/';
 
     /**
      * getLinks

@@ -14,7 +14,7 @@ if [ "$branch" == 'master' ]; then
     # in that screen start docker and run the container geoplasma:v1
     # name the run geoplasma and forward local port 80 and 443 to the docker
     #screen -dmS geoplasma /usr/bin/sudo
-    docker run -h "geoplasma" -p 80:80 -p 443:443 --name geoplasma -d -v /var/geoplasma/data:/var/lib/postgresql/postgresqldata -v /var/geoplasma/uploadContent:/var/www/html/content -v /var/geoplasma/geoserver_data:/var/lib/geoserver_data -v /var/geoplasma/geoplasma/letsencrypt:/etc/letsencrypt -v $(pwd)/backend:/var/www/html/backend -v $(pwd)/frontend:/var/www/html/frontend -v /var/geoplasma/license:/etc/GiGa/license -v /var/geoplasma/gstdata:/var/lib/gstdata geoplasma:v1
+    docker run -h "geoplasma" -p 80:80 -p 443:443 --name geoplasma -d -v /var/geoplasma/data:/var/lib/postgresql/postgresqldata -v /var/geoplasma/uploadContent:/var/www/html/content -v /var/geoplasma/geoserver_data:/var/lib/geoserver_data -v /var/geoplasma/geoplasma/letsencrypt:/etc/letsencrypt -v $(pwd)/backend:/var/www/html/backend -v $(pwd)/frontend:/var/www/html/frontend -v /var/geoplasma/license:/etc/GiGa/license -v /var/geoplasma/gstdata:/var/lib/gstdata -v /var/geoplasma/backup:/public geoplasma:v1
 elif [ "$branch" == 'stage' ]; then
     docker rm $(docker kill geoplasma-staging) || true
 

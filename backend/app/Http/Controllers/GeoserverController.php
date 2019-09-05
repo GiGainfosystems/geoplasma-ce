@@ -23,7 +23,7 @@ class GeoserverController extends Controller
 
     private $Geoserver_DIR = '/var/lib/geoserver_data';
     //private $Geoserver_DIR = '/home/tomcat/tomcat/output/build/webapps/geoserver/data';
-    private $rsync = 'rsync -s -e "ssh -i /var/www/.ssh/id_rsa -q -o StrictHostKeyChecking=no" "pp10-giga@rsync.hidrive.strato.com:/public/inbox/';
+    private $rsync = 'rsync -s "/public/inbox/';
 
     /**
      * Helper function to get the correct environment (local, staging or production)
@@ -463,10 +463,8 @@ class GeoserverController extends Controller
         $area = Pilotarea::where('excel_identifier','=',$workspace)->first();
         $layers = [];
     
-        $cmd = 'rsync -e "ssh -i /var/www/.ssh/id_rsa -q -o StrictHostKeyChecking=no" --list-only pp10-giga@rsync.hidrive.strato.com:/public/inbox/'.$area->uri.'/ 2>&1';
-        exec($cmd, $output, $return_v);
-        
-        
+        $cmd = 'rsync --list-only /public/inbox/'.$area->uri.'/ 2>&1';
+        exec($cmd, $output, $return_v);         
         $excelFound = false;
         $extension = '.xlsx';
         $files = [];
@@ -559,7 +557,7 @@ class GeoserverController extends Controller
               }
               
           // Get inspire categories
-          $cmd = 'rsync -s -e "ssh -i /var/www/.ssh/id_rsa -q -o StrictHostKeyChecking=no" "pp10-giga@rsync.hidrive.strato.com://users/pp10-giga/vogtland-w-bohemia/Inspire.xls" /var/www/html/backend/storage/excel 2>&1';
+          $cmd = 'rsync -s "/public/pp10-giga/vogtland-w-bohemia/Inspire.xls" /var/www/html/backend/storage/excel 2>&1';
           exec($cmd, $output, $return_v);
           $exists = Storage::disk('excel')->exists('Inspire.xls');
           if(!$exists) {
@@ -717,7 +715,7 @@ class GeoserverController extends Controller
      */
     public function copyLayer($layername, $area) {
 
-        $cmd = 'rsync -e "ssh -i /var/www/.ssh/id_rsa -q -o StrictHostKeyChecking=no" --list-only pp10-giga@rsync.hidrive.strato.com:/public/inbox/'.$area->uri.'/ 2>&1';
+        $cmd = 'rsync --list-only /public/inbox/'.$area->uri.'/ 2>&1';
         exec($cmd, $output, $return_v);
 
         $layerFound = false;
