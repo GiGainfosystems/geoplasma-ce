@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Storage;
 
 class SuperuserController extends Controller
 {
-    private $rsync = 'rsync -s "/public/inbox/';
+    private $rsync = 'rsync -stuz "/public/inbox/';
 
     /**
      * loadSuperuserData

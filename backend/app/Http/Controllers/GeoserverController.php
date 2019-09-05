@@ -23,7 +23,7 @@ class GeoserverController extends Controller
 
     private $Geoserver_DIR = '/var/lib/geoserver_data';
     //private $Geoserver_DIR = '/home/tomcat/tomcat/output/build/webapps/geoserver/data';
-    private $rsync = 'rsync -s "/public/inbox/';
+    private $rsync = 'rsync -stuz "/public/inbox/';
 
     /**
      * Helper function to get the correct environment (local, staging or production)
@@ -557,7 +557,7 @@ class GeoserverController extends Controller
               }
               
           // Get inspire categories
-          $cmd = 'rsync -s "/public/pp10-giga/vogtland-w-bohemia/Inspire.xls" /var/www/html/backend/storage/excel 2>&1';
+          $cmd = 'rsync -stuz "/public/pp10-giga/vogtland-w-bohemia/Inspire.xls" /var/www/html/backend/storage/excel 2>&1';
           exec($cmd, $output, $return_v);
           $exists = Storage::disk('excel')->exists('Inspire.xls');
           if(!$exists) {
