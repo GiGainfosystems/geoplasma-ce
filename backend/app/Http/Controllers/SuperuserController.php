@@ -302,6 +302,12 @@ class SuperuserController extends Controller
             }
         }
 
+        $maxDepth = 999999999999999999999999999999999999999999999999999;
+        if ($area == "vienna") {
+                $maxDepth = 200;
+        }
+
+
         $tmppath = ($url === "http://localhost:80" ? "/var/www/html/backend/storage" : "/var/www/html/content");
         $tmppathurl = ($url === "http://localhost:80" ? "http://localhost/backend/storage/" : "https://downloads.geoplasma-ce.eu/");
 
@@ -329,7 +335,7 @@ class SuperuserController extends Controller
           // zMin
           500,
           // maxBoreDepth
-          10000,
+          $maxDepth,
           // dip
           90,
           // azimut
