@@ -181,13 +181,29 @@ class ReportPane extends React.Component {
             var svgNS = "http://www.w3.org/2000/svg";  
             for(let i = 0; i<units.length; i++) {
                 if(i+1 < units.length) {
-                    const points = units[i].getAttribute('x1')+","+units[i].getAttribute('y1')+" "+units[i+1].getAttribute('x1')+","+units[i+1].getAttribute('y1')+" "+units[i+1].getAttribute('x2')+","+units[i+1].getAttribute('y2')+" "+units[i].getAttribute('x2')+","+units[i].getAttribute('y2')
+                    const points = 
+                        units[i].getAttribute('x1')+","+units[i].getAttribute('y1')+" "+
+                        units[i+1].getAttribute('x1')+","+units[i+1].getAttribute('y1')+" "+
+                        units[i+1].getAttribute('x2')+","+units[i+1].getAttribute('y2')+" "+
+                        units[i].getAttribute('x2')+","+units[i].getAttribute('y2');
                     let polygon = document.createElementNS(svgNS,"polygon");
                     polygon.setAttributeNS(null,"points", points);
                     polygon.setAttributeNS(null,"fill",units[i+1].getAttribute('stroke'));
                     polygon.setAttributeNS(null,"stroke","none");
                     svgElement.appendChild(polygon);
                 }
+            }
+            if (this.props.activeArea.uri == "vienna") {
+                const points = 
+                    units[0].getAttribute('x1')+","+units[0].getAttribute('y1')+" "+
+                    units[0].getAttribute('x1')+","+lines[0].getAttribute('y2')+" "+
+                    units[0].getAttribute('x2')+","+lines[0].getAttribute('y2')+" "+
+                    units[0].getAttribute('x2')+","+units[0].getAttribute('y1');
+                let polygon = document.createElementNS(svgNS,"polygon");
+                polygon.setAttributeNS(null,"points", points);
+                polygon.setAttributeNS(null,"fill",units[0].getAttribute('stroke'));
+                polygon.setAttributeNS(null,"stroke","none");
+                svgElement.appendChild(polygon);
             }
 
             // SVG to PNG for the report because the PDF lib does not support svg..
