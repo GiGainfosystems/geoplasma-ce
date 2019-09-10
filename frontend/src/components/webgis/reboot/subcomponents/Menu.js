@@ -83,17 +83,17 @@ class Menu extends React.Component {
         if ( this.props.activeArea.id && this.props.activeArea.id && this.props.activeArea.id) {
             switch(this.props.activeArea.id) {
                 case 3: // "vogtland-w-bohemia"
-                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?viewHash=1573c7dff57f1ab4472f110ed2c3efae">3D Model</a></h2>);
+                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?moma=Geoplasma.Vogtland/Western%20Bohemia">3D Model</a></h2>);
                 // case 5: // "walbrzych-broumov"
                 //    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/">3D Model</a></h2>);
                 case 1: // "vienna"
-                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?viewHash=914cbaa1c67338b33b1fb87d156f369a">3D Model</a></h2>);
+                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?moma=Geoplasma.Vienna">3D Model</a></h2>);
                 case 2: // "bratislava"
-                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?viewHash=771a06886b64569d07c2c9cd2ad3fa2c">3D Model</a></h2>);
+                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?moma=Geoplasma.Bratislava">3D Model</a></h2>);
                 case 4: // "ljubljana"
-                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?viewHash=03be4a2c72b3dc2149ffd11b53e7037d">3D Model</a></h2>);
+                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?moma=Geoplasma.Ljubljana">3D Model</a></h2>);
                 case 6: // "krakow"
-                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?viewHash=d5c7b161199e7e301d36218553ef641e">3D Model</a></h2>);
+                    return (<h2><a class="model_link_3d" target="_blank" href="https://geo-vi.giga-infosystems.com/webgui/?moma=Geoplasma.Krakow">3D Model</a></h2>);
                 case 5:
                 default:
                     return "";
