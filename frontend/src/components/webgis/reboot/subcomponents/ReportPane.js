@@ -193,7 +193,7 @@ class ReportPane extends React.Component {
                     svgElement.appendChild(polygon);
                 }
             }
-            if (this.props.activeArea.uri == "vienna") {
+            if (this.props.activeArea.uri == "vienna" || this.props.activeArea.uri == "vogtland-w-bohemia" ) {
                 const points = 
                     units[0].getAttribute('x1')+","+units[0].getAttribute('y1')+" "+
                     units[0].getAttribute('x1')+","+lines[0].getAttribute('y2')+" "+
