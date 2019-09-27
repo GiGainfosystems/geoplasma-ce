@@ -9,6 +9,11 @@ import { featureRequest } from '../../helper'
 import leafletImage from 'leaflet-image'
 import proj4 from 'proj4';
 
+
+const INPROGRESS = 'INPROGRESS';
+const NOTSTARTED = 'NOTSTARTED';
+const FINISHED = 'FINISHED';
+
 /**
  * The report pane. A location based report is shown here
  */
@@ -20,7 +25,8 @@ class ReportPane extends React.Component {
             pdfloader: false,
             map: undefined,
             reportQuery: false,
-            createBorehole: false
+            createBorehole: false,
+            borehole: NOTSTARTED,
         }
     }
 
@@ -123,9 +129,12 @@ class ReportPane extends React.Component {
         
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         if(this.props.report.borehole) {
             this.loadedBorehole();
+        }
+        if ( this.props.report.borehole !== '' && prevState.borehole === INPROGRESS ) {
+            this.setState({borehole: FINISHED});
         }
     }
 
@@ -137,7 +146,7 @@ class ReportPane extends React.Component {
         const srs = (this.props.activeLayer.reference_system ==="ETRS-1989, TM 33-N" ? 25833 : 25834);
         const convert = proj4(epsg83x, [parseFloat(this.props.report.coords[1]), parseFloat(this.props.report.coords[0])])
         const coordinates = 'multipoint z (('+Math.trunc(convert[0])+' '+Math.trunc(convert[1])+' 0))'
-        this.setState({ createdBorehole: true})
+        this.setState({ createdBorehole: true, borehole: INPROGRESS})
         this.props.virtualBorehole(this.props.activeArea.uri, coordinates, srs);
     }
 
@@ -297,8 +306,14 @@ class ReportPane extends React.Component {
                         <div className="width-100 contact-details borehole-info">
                             <h3 className="text-left"><i className="fas fa-pen" aria-hidden="true"></i> <span ref="contact_title">{getTranslation("virtual_borehole.title")}:</span></h3>
                             <div className="borehole-and-legend">
-                            {this.props.report.borehole === '' &&
+                            {this.props.report.borehole === '' && this.state.borehole !== INPROGRESS &&
                                 <button className="btn btn-green borehole-button" onClick={() => this.createBorehole()}>{getTranslation("webgis.virtual_borehole")}</button>
+                            }
+                            {this.state.borehole === INPROGRESS &&
+                                <div>
+                                    <div style={{textAlign: 'center'}}>{getTranslation("webgis.loading")}</div>
+                                    <div className="loader"></div>
+                                </div>
                             }
                             {this.props.report.borehole === false &&
                                 <p>An error occured while creating the virtual borehole.</p>
