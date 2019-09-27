@@ -1,10 +1,9 @@
 import { GET_LAYERS_SUCCESS, GEOCODE_ERROR } from './types'
 import { dataRequest, dataRequestError, formRequestFinished, dataRequestSuccess } from './fetching'
-import { geocodeError } from '../'
 import config from '../config'
 import { compareData } from '../components/webgis/helper'
 import { saveAs } from 'file-saver'
-import { reverseGeocode } from './geocode'
+import { reverseGeocode, geocodeError } from './geocode'
 
 
 /**
