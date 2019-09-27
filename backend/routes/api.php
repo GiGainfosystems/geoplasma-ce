@@ -43,6 +43,7 @@ Route::middleware(['cors'])->group(function () {
     Route::get('/user/confirmpasswordreset/{confirmation_code}/{email}', 'UserController@passwordResetRequest');
     Route::get('/user/checkauthenticate', 'AuthenticateController@checkIfLoggedIn');
     Route::get('/data', 'DataController@getAllData');
+    Route::post('/gisdata', 'DataController@getAllGISData');
     Route::get('/userprofiles', 'UserprofileController@getUserprofiles');
     Route::get('/pilotareas', 'PilotareaController@getPilotareas');
     Route::get('/professionalgroups', 'ProfessionalgroupController@getProfessionalgroups');

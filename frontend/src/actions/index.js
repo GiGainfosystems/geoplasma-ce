@@ -88,6 +88,39 @@ export function getAllData() {
 }
 
 /**
+ * Send a request to the backend to get all needed data for web GIS
+ */
+export function getAllGISData(pilotarea) {
+    return (dispatch) => {
+        dispatch(dataRequest('getdata', true));
+        fetch(config.apiBaseUrl+'api/gisdata', {
+                mode: 'cors',
+                method: 'POST',
+                body: JSON.stringify({pilotarea})
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    dispatch(dataRequestError('getdata', false));
+                }
+                dispatch(formRequestFinished());
+                return response;
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch(loadGlossarySuccess(data.glossary))
+                dispatch(loadPilotareasSuccess(data.pilotareas))
+                dispatch(loadProfessionalgroupsSuccess(data.professionalgroups))
+                dispatch(loadTagsSuccess(data.tags))
+                dispatch(loadUserprofilesSuccess(data.userprofiles))
+                dispatch(loadNotesSuccess(data.explanatory_notes))
+                dispatch(loadLocalContactsSuccess(data.localcontacts))
+                dispatch(loadUnitsSuccess(data.units))
+                dispatch(loadExamplesSuccess(data.examples))
+            })
+    };
+}
+
+/**
  * Request to send a message via the contact form on the yellow pages
  * 
  * @param  {} contactemail - Contact person email

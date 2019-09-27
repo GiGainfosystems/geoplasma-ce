@@ -123,6 +123,63 @@ class DataController extends Controller
         return response()->json($response);
     }
 
+    /**
+     * getAllGISData - Fetch all data that is needed for the frontend (except Web GIS layers)
+     *
+     * @return void - Return all needed data
+     */
+    public function getAllGISData(Request $request) {
+
+        $PA = $request->json('pilotarea');
+
+        $response = [];
+
+        $glossary = Glossary::orderBy('keyword', "asc")->get();
+        $response['glossary'] = $glossary;
+
+        $pilotarea = Pilotarea::where("uri", $PA)->first();
+        $pilotareas = Pilotarea::all();
+        $response['pilotareas'] = $pilotareas;
+
+        error_log($pilotarea);
+        $units = Unit::where("pilotarea_id", $pilotarea->id)->orderBy('id', 'asc')->get();
+        $response['units'] = $units;
+
+        $professionalgroups = Professionalgroup::orderBy('name', 'asc')->get();
+        $response['professionalgroups'] = $professionalgroups;
+
+
+        $tags = Tag::all();
+        $response['tags'] = $tags;
+
+        $localcontacts = LocalContact::all();
+        $response['localcontacts'] = $localcontacts;
+
+        $notes = Explanatorynote::all();
+        $response['explanatory_notes'] = $notes;
+
+        $examples = Example::all();
+        $response['examples'] = $examples;
+
+        $userprofiles = Userprofile::orderBy('created_at', "desc")->get();
+        $userprofilegroups = Userprofilegroup::all();
+        foreach($userprofiles as $userprofile) {
+            $occupation = [];
+            foreach($userprofilegroups as $group) {
+                if($userprofile->id == $group->userprofile_id) {
+                    array_push($occupation, $group->group_id);
+                }
+            }
+            $userprofile->occupation = $occupation;
+        }
+
+
+
+        $response['userprofiles'] = $userprofiles;
+
+        return response()->json($response);
+    }
+
 
     /**
      * contactForm - Send a email to a user of the yellow pages based on the Contact form

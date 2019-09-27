@@ -71,7 +71,7 @@ import { units } from './reducers/units'
 import { examples } from './reducers/examples'
 import { explanatorynotes } from './reducers/explanatory_notes'
 import { professionalgroups } from './reducers/professionalgroups'
-import { getAllData, getLayers, changeLanguage, getTags, getSiteContent, getPages, getGlossary, checkIfLoggedIn, getEvents, getContent, getUserprofiles, getPilotareas, getProfessionalgroups, getThematicCoverages } from './actions'
+import { getAllData, getAllGISData, getLayers, changeLanguage, getTags, getSiteContent, getPages, getGlossary, checkIfLoggedIn, getEvents, getContent, getUserprofiles, getPilotareas, getProfessionalgroups, getThematicCoverages } from './actions'
 import ReactGA from 'react-ga'
 
 var disableStr = 'ga-disable-' + 'UA-108798631-1';
@@ -144,7 +144,15 @@ let store = createStore(combineReducers({
     applyMiddleware(middleware, ReduxThunk)
 );
 window.store = store;
-store.dispatch(getAllData())
+
+if (window.location.pathname.indexOf("/webgis") === 0 ) {
+  // we now should have either `/webgis/{pa}` or `/webgis/{pa}/report/{lat}/{lon}`
+  const urlParts = window.location.pathname.split("/");
+  // `urlPart[2]` holds in both cases the PA name
+  store.dispatch(getAllGISData(urlParts[2]))
+} else {
+  store.dispatch(getAllData())
+}
 store.dispatch(changeLanguage(locale))
 
 let token = cookies.get('token');
