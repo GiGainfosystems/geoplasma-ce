@@ -63,6 +63,16 @@ function Sidebar(props) {
             </div>
             }
 
+            {props.pages.filter(page => page.url === 'infovideo').length > 0  &&
+            <div className="default-element default-element-dark inversed">
+                <Link to="/content/infovideo">
+                <div className="default-element-content text-container why-teaser hover-effect">
+                    <h3><i className="fas fa-play-circle"></i> Videos</h3>
+                </div>
+                </Link>
+            </div>
+            }
+
 
             <BigTileBlue
             title="portal.teaser.expert.title"
