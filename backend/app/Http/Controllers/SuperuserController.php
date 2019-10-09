@@ -319,7 +319,7 @@ class SuperuserController extends Controller
           // legendTemplateFile,
           '',
           // additionalParameters,
-          '{"unit" : "px", "borehole-image-width" : 1000, "borehole-image-height" : 2000, "dpi" : 100, "image-align" : "up", "borehole-y-scale-height-reference":"depth"}',
+          '{"unit" : "px", "borehole-label-area-word-wrap-threshold": 255, "borehole-image-width" : 1000, "borehole-image-height" : 2000, "dpi" : 100, "image-align" : "up", "borehole-y-scale-height-reference":"depth"}',
           // tmppath,
           $tmppath,
           // outputType,
