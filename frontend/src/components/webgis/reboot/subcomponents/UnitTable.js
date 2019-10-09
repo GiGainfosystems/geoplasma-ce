@@ -20,7 +20,7 @@ function UnitTable(props) {
                 <table className="unit-table" cellSpacing="0">
                 <tbody>
                     {props.units.map(unit =>
-                        <tr>
+                        <tr key={unit.id}>
                             <td className="unit-color" style={{width: '30px', backgroundColor : unit.color}}>unit</td>
                             <td>
                                 <p><strong>{unit[titlefield] !== '' ? unit[titlefield] : unit.title_en}</strong></p>

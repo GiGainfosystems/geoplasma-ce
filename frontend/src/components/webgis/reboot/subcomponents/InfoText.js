@@ -11,8 +11,8 @@ class InfoText extends React.Component {
                 {this.props.maps.length > 0 &&
                     <table>
                         <tbody>
-                        {this.props.maps.map(layer =>
-                            <tr key={layer.id}>
+                        {this.props.maps.map((layer, index) =>
+                            <tr key={index}>
                                 <td className="reports-box-content text-left">
                                     <p>
                                     {layer.is_open_loop_tlm &&

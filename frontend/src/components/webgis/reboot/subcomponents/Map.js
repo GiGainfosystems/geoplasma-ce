@@ -115,8 +115,8 @@ class MapView extends React.Component {
                 {((this.props.activeArea.uri) && (this.props.activeLayer.uri)) &&
                     <WMSTileLayer url={config.geoServerUrl+"/geoserver/gwc/service/wms?tiled=true"} format="image/png" layers={this.props.activeArea.uri+":"+this.props.activeLayer.uri} transparent={true} opacity={this.state.opacity} />
                 }
-                {this.state.markers.map(marker =>
-                    <LocationQuery report={this.props.report} showReport={this.props.showReport} resetLocationQuery={() => this.resetLocationQuery()} language={this.props.language} query={this.props.query} activeLayer={this.state.locationQueryLayer} activeArea={this.props.activeArea} />
+                {this.state.markers.map((marker, index) =>
+                    <LocationQuery key={index} report={this.props.report} showReport={this.props.showReport} resetLocationQuery={() => this.resetLocationQuery()} language={this.props.language} query={this.props.query} activeLayer={this.state.locationQueryLayer} activeArea={this.props.activeArea} />
                 )}
                 {this.props.showMeasurements &&
                     <React.Fragment>

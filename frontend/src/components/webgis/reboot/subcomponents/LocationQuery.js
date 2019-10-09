@@ -47,15 +47,15 @@ class LocationQuery extends React.Component {
                             {value !== false &&
                                 <p><strong>{getTranslation(this.props.activeLayer.key+".label")}:</strong>
                                     {this.props.query.isFetching &&
-                                        <p>{getTranslation("webgis.loading")}...</p>
+                                        <span><br />{getTranslation("webgis.loading")}...</span>
                                     }
                                     {!this.props.query.isFetching &&
-                                        <p>
+                                        <span><br />
                                             {(value != '-9999' ? value : '-')} 
                                             {this.props.activeLayer.unit_of_cell_related_parameter !== 'none' &&
                                                 <React.Fragment> {value != '-9999' ? this.props.activeLayer.unit_of_cell_related_parameter : ''}</React.Fragment>
                                             }
-                                        </p>
+                                        </span>
                                     }
                                 </p>
                             }
