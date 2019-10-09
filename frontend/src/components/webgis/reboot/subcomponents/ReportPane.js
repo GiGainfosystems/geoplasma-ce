@@ -27,7 +27,8 @@ class ReportPane extends React.Component {
             reportQuery: false,
             createBorehole: false,
             borehole: NOTSTARTED,
-        }
+            plottedUnits: [],
+        };
     }
 
     /**
@@ -35,6 +36,7 @@ class ReportPane extends React.Component {
      */
     hidePane() {
         this.props.hidePane();
+        this.setState({plottedUnits: []});
     }
 
     /**
@@ -151,7 +153,7 @@ class ReportPane extends React.Component {
     }
 
     /**
-     * If a borehole is loaded we need to do some stuff do display it properly.
+     * If a borehole is loaded we need to do some stuff to display it properly.
      * Texts in the borehole SVG get translated
      * The borehole gets filled manually with rectangles between the lines that represent a unit in the borehole
      */
@@ -174,6 +176,7 @@ class ReportPane extends React.Component {
             })
             
             // Replace the name of the layers in the svg
+            let plottedUnits = [];
             names.forEach((name, index) => {
                 const currentName = name.innerHTML
                 let titlefield = 'title_'+this.props.language.locale
@@ -181,9 +184,11 @@ class ReportPane extends React.Component {
                 if ( unit.length > 0 ) {
                     name.innerHTML = unit[0][titlefield] ? unit[0][titlefield] : unit[0].title_en;
                     units[index].setAttribute('stroke', unit[0]["color"]);
+                    plottedUnits.push(unit[0].id);
                 }
             })
-            
+            if ( plottedUnits.length > 0 ) this.setState({plottedUnits});
+
             meta.forEach(me => {
                 if(me.innerHTML.indexOf("length") !== -1) {
                     me.innerHTML = me.innerHTML.replace("length", getTranslation("webgis.borehole.length"))
@@ -257,7 +262,12 @@ class ReportPane extends React.Component {
     
     render() {
 
-        const units = this.props.units.filter(unit => unit.pilotarea_id === this.props.activeArea.id)
+        const units = this.props.units.filter(unit => {
+            if ( this.props.report.borehole !== '' && this.props.report.borehole !== false && this.state.plottedUnits.length > 0) {
+                return (unit.pilotarea_id === this.props.activeArea.id) && (this.state.plottedUnits.indexOf(unit.id) > -1);
+            }
+            return unit.pilotarea_id === this.props.activeArea.id;
+        });
 
         return(
             <div className={"report-pane "+(this.props.show? 'show-pane' : 'hide-pane')}>
