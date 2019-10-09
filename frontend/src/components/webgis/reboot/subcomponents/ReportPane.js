@@ -167,16 +167,24 @@ class ReportPane extends React.Component {
 
             // Needs to be sorted now..
             units.sort(function(a,b) {
-                return b.getAttribute('y1')-a.getAttribute('y1');
+                return parseFloat(b.getAttribute('y1'))-parseFloat(a.getAttribute('y1'));
             })
-            // Replace the name of the layers in the svg
-            names.map(name => {
-                const currentName = name.innerHTML
-                let titlefield = 'title_'+this.props.language.locale
-                name.innerHTML = this.props.units.filter(unit => unit.identifier === currentName).length > 0 ? this.props.units.filter(unit => unit.identifier === currentName)[0][titlefield] ? this.props.units.filter(unit => unit.identifier === currentName)[0][titlefield] : this.props.units.filter(unit => unit.identifier === currentName)[0].title_en : currentName;
+            names.sort(function(a,b) {
+                return parseFloat(b.getAttribute('y'))-parseFloat(a.getAttribute('y'));
             })
             
-            meta.map(me => {
+            // Replace the name of the layers in the svg
+            names.forEach((name, index) => {
+                const currentName = name.innerHTML
+                let titlefield = 'title_'+this.props.language.locale
+                let unit = this.props.units.filter(unit => unit.identifier === currentName);
+                if ( unit.length > 0 ) {
+                    name.innerHTML = unit[0][titlefield] ? unit[0][titlefield] : unit[0].title_en;
+                    units[index].setAttribute('stroke', unit[0]["color"]);
+                }
+            })
+            
+            meta.forEach(me => {
                 if(me.innerHTML.indexOf("length") !== -1) {
                     me.innerHTML = me.innerHTML.replace("length", getTranslation("webgis.borehole.length"))
                 }
