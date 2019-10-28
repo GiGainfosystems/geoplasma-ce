@@ -109,12 +109,15 @@ class Stage extends Component {
         let id = document.getElementById("vienna");
         if (id) {
             this.props.pilotareas.map(area => {
-                pilotareas.push(document.getElementById(area.uri));
-                pilotareas.push(document.getElementById("text" + area.uri))
-                pilotareas.push(document.getElementById("textbox" + area.uri))
-                pilotareas.push(document.getElementById("circle" + area.uri))
-                if(document.getElementById(area.uri+"2")) {
-                    pilotareas.push(document.getElementById(area.uri+"2"));
+                let path = document.getElementById(area.uri);
+                if ( path !== undefined && path !== null ) {
+                    pilotareas.push(path);
+                    pilotareas.push(document.getElementById("text" + area.uri))
+                    pilotareas.push(document.getElementById("textbox" + area.uri))
+                    pilotareas.push(document.getElementById("circle" + area.uri))
+                    if(document.getElementById(area.uri+"2")) {
+                        pilotareas.push(document.getElementById(area.uri+"2"));
+                    }
                 }
             })
                         

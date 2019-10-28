@@ -303,7 +303,7 @@ class SuperuserController extends Controller
         }
 
         $maxDepth = 999999999999999999999999999999999999999999999999999;
-        if ($area == "vienna" || $area == "vogtland-w-bohemia") {
+        if ($area == "vienna") {
                 $maxDepth = 200;
         }
 

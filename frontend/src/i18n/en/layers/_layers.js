@@ -89,7 +89,7 @@ const layers = [
     },
     {
         "key": "bulk_thermal_conductivity_for_a_specific_depth_interval.label",
-        "string": "Bulk thermal conductivity"
+        "string": "Average thermal conductivity"
     },
     {
         "key": "heat_transfer_rate_at_a_specific_depth_interval.label",

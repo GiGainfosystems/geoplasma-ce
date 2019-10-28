@@ -1185,7 +1185,7 @@ class GeoserverController extends Controller
                 $hex = sprintf("#%02x%02x%02x", $r, $g, $b);
 
                 // CHECK IF MODEL ALREADY EXISTS
-                $geometry = DB::connection('gst')->select('select * from geometries where name = ?', [$name]);
+                $geometry = DB::connection('gst')->select('select * from geometries where subgeometry_of is null and name = ?', [$name]);
 
                 // If model exists, remove it as it will be replaced
                 if($geometry) {
@@ -1225,7 +1225,7 @@ class GeoserverController extends Controller
         $baseschema = 'gst';
         $body = Body::where('pilotarea','=', $workspace)->first();
         if($body) {
-            $geometries = DB::connection('gst')->select('select * from geometries where feature_class = ?', [$body->fcid]);
+            $geometries = DB::connection('gst')->select('select * from geometries where subgeometry_of is null and feature_class = ?', [$body->fcid]);
             $feature = DB::connection('gst')->select('select * from feature_classes where id = ?', [$body->fcid]);
             $gst = new gst();
             $gst->connect($host, $port, $dbuser, $dbpassword, $dbname, $type, $baseschema, '/etc/GiGa/ssl/client.der');
