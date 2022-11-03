@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import UserDetail from './UserDetail'
+import UserDetailContainer from "../../containers/UserDetailContainer";
 
 /**
  * List of users that is displayed in the admin area
@@ -64,7 +64,7 @@ class UserList extends Component {
                         </tr>
                         {user.id === this.state.activeUser &&
                         <tr>
-                            <td colSpan="6"><UserDetail user={user} unClickUser={() => this.unClickUser()} changeUserDetailsSuperuser={this.props.changeUserDetailsSuperuser} fetching={this.props.fetching} /></td>
+                            <td colSpan="6"><UserDetailContainer user={user} unClickUser={() => this.unClickUser()} changeUserDetailsSuperuser={this.props.changeUserDetailsSuperuser} fetching={this.props.fetching} /></td>
                         </tr>
                         }
                         </tbody>

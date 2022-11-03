@@ -9,8 +9,7 @@ import {
 import getTranslation from '../../i18n/'
 // Import child components
 import Header from '../header/Header'
-import { Link } from 'react-router-dom'
-import Stage from './Stage'
+import StageContainer from "../../containers/StageContainer";
 import 'react-accessible-accordion/dist/fancy-example.css';
 import './HomePage.css'
 import Footer from '../footer/Footer'
@@ -34,16 +33,8 @@ import Sidebar from './Sidebar'
  * Content page from the web portal (why to use shallow geothermal, disclaimer etc., case studies, international projects)
  */
 class ContentPage extends Component {
-
-    /**
-     * Opt out of google anlytics
-     */
-    optOut() {
-    var disableStr = 'ga-disable-' + 'UA-108798631-1';
-    document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-    window[disableStr]
-    }
-
+    language;
+    
     render() {
 
         const iconset = {
@@ -144,7 +135,7 @@ class ContentPage extends Component {
                 return example;
             })
         }
-        
+        const { setCookie, deleteCookie, cookies } = this.props;
         const localExperts = this.props.localcontacts.filter(expert => expert.language === this.props.language.locale)
         return (
         <div className="App">
@@ -153,7 +144,7 @@ class ContentPage extends Component {
 
 
             <div className="container container-content">
-                <Stage pilotareas={this.props.pilotareas} />
+                <StageContainer pilotareas={this.props.pilotareas} />
                 <div className="container-flex">
                     <div className="two-third">
 
@@ -175,19 +166,46 @@ class ContentPage extends Component {
                     {sitecontent.map(content =>
                         <div key={content.id} className="default-element">
                             <div className="default-element-content text-container">
-                            <a name={content.title}></a>
-                            <h2 className={this.props.match.params.url === 'whytouse' ? 'whytouse' : 'not-whytouse'}>
-                                <span>{(this.props.language.locale === "en" ? content.title : (content.title_local !== '') ? content.title_local : content.title)}</span>
-                                <div>
-                                {content.icons.map(icon =>
-                                    <img src={iconset[icon]} />    
-                                )}
-                                </div>
-                            </h2>
+                                <a name={content.title}></a>
+                                <h2 className={this.props.match.params.url === 'whytouse' ? 'whytouse' : 'not-whytouse'}>
+                                    <span>{(this.props.language.locale === "en" ? content.title : (content.title_local !== '') ? content.title_local : content.title)}</span>
+                                    <div>
+                                    {content.icons.map(icon =>
+                                        <img src={iconset[icon]} />
+                                    )}
+                                    </div>
+                                </h2>
 
                                 <span dangerouslySetInnerHTML={{__html: (this.props.language.locale === "en" ? content.text : (content.text_local !== '') ? content.text_local :content.text)}}></span>
-                                {content.title === 'Google Analytics' &&
-                                <button className="btn btn-green" onClick={() => this.optOut()}>{getTranslation("tracking.button")}</button>
+                                {content.title === 'Cookies' && <div>
+                                    <div>
+                                        <fieldset onChange={(e) => setCookie('consent', e.target.value)}>
+                                            <legend>{getTranslation("cookies.radio.legend")}</legend>
+
+                                            <label htmlFor="all">
+                                                <input type="radio" id="all" name="cookies-disclaimer" value="all" checked={cookies.consent === 'all'} />
+                                                {getTranslation("cookies.radio.all")}
+                                            </label>
+
+                                            <label htmlFor="essential">
+                                                <input type="radio" id="essential" name="cookies-disclaimer" value="essential" checked={cookies.consent === 'essential'} />
+                                                {getTranslation("cookies.radio.essential")}
+                                            </label>
+
+                                            <label htmlFor="none">
+                                                <input type="radio" id="none" name="cookies-disclaimer" value="none" checked={cookies.consent === 'none' || cookies.consent === null} />
+                                                {getTranslation("cookies.radio.none")}
+                                            </label>
+                                        </fieldset>
+                                        {Object.keys(cookies).length > 0 &&
+                                            <div className="btn-group">
+                                                <button onClick={() => {
+                                                    Object.keys(cookies).forEach(deleteCookie)
+                                                }} className="btn btn-gray">{getTranslation('cookies.buttons.deleteAll')}</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
                                 }
                             </div>
                         </div>

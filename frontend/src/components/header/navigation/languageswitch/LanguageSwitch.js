@@ -29,7 +29,7 @@ class LanguageSwitch extends Component {
   }
 
   render() {
-    const activeLanguage = this.props.language.availableLanguages.filter(language => language.locale === this.state.locale)[0]
+    const activeLanguage = this.props.language.availableLanguages.find(language => language.locale === this.state.locale)
     const selectableLanguages = this.props.language.availableLanguages.filter(language => language.locale !== this.state.locale)
 
     return(

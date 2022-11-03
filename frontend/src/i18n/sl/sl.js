@@ -15,6 +15,7 @@ import additional from './additional/additional'
 import professionalgroups from './professionalgroups/_professionalgroups'
 import layers from './layers/_layers'
 import landingpage from './landingpage/_landingpage'
+import cookies from './cookies/_cookies'
 
 const en = forms.concat(
     subheader,
@@ -32,7 +33,8 @@ const en = forms.concat(
     additional,
     professionalgroups,
     layers,
-    landingpage
+    landingpage,
+    cookies
 )
 
 export default en

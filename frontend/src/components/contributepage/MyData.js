@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import Header from '../header/Header'
 import Subheader from '../subheader/Subheader'
 import { Redirect } from 'react-router-dom'
-import Cookies from 'universal-cookie';
 import getTranslation from '../../i18n/'
 import Footer from '../footer/Footer'
-import UserProfileView from './UserProfileView'
-const cookies = new Cookies();
+import UserProfileViewContainer from "../../containers/UserProfileViewContainer";
 
 /**
  * The my data overview page where the user sees which information about him/her is saved on our web portal
@@ -37,7 +35,7 @@ class MyData extends Component {
      * Remove the user from the knowledge platform
      */
     removeUser() {
-      let token = cookies.get('token')
+      const token = this.props.cookies.token
       this.props.removeUser(token)
     }
 
@@ -69,7 +67,7 @@ class MyData extends Component {
 
                 {userprofile.id &&
                     <React.Fragment>
-                    <UserProfileView hidenav={true} countries={this.props.countries} pilotareas={this.props.pilotareas} professionalgroups={this.props.professionalgroups} userprofile={userprofile} /><br /><br />
+                    <UserProfileViewContainer hidenav={true} countries={this.props.countries} pilotareas={this.props.pilotareas} professionalgroups={this.props.professionalgroups} userprofile={userprofile} /><br /><br />
                     </React.Fragment>
                 }
                 <p>{getTranslation("delete.infotext")}</p>

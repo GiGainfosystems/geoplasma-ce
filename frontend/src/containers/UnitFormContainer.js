@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
     fetching: state.fetching,
     language: state.language,
     pilotareas: state.pilotareas,
-    id: id
+    id: id,
+    cookies: state.cookies.values,
   }
 }
 

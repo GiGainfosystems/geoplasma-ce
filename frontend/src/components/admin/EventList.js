@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EventDetail from './EventDetail'
+import EventDetailContainer from "../../containers/EventDetailContainer";
 
 /**
 * This component gives the superuser a list of all events and
@@ -54,7 +54,7 @@ class EventList extends Component {
                         {event.id === this.state.activeEvent &&
                         <tr>
                             <td colSpan="6">
-                            <EventDetail event={event} removeEventSuperuser={this.props.removeEventSuperuser} unclickEvent={() => this.unClickEvent()} />
+                            <EventDetailContainer event={event} removeEventSuperuser={this.props.removeEventSuperuser} unclickEvent={() => this.unClickEvent()} />
                             </td>
                         </tr>
                         }

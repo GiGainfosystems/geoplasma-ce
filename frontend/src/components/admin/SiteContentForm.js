@@ -4,9 +4,7 @@ import Subheader from '../subheader/Subheader'
 import { Redirect, Link } from 'react-router-dom'
 import './Superuser.css'
 import getTranslation from '../../i18n/'
-import Cookies from 'universal-cookie';
 import Rte from './Rte'
-const cookies = new Cookies();
 
 /**
  * Form to add content to a page on the landing pages
@@ -131,7 +129,7 @@ class SiteContentForm extends Component {
 
         let redirect = false;
          if(errorMessages.length === 0) {
-            let token = cookies.get('token');
+            const token = this.props.cookies.token;
             redirect = true;
 
             this.props.saveSiteContent(
@@ -179,7 +177,7 @@ class SiteContentForm extends Component {
     }
 
     removeGlossary() {
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.removePage(this.props.id, token);
         this.setState({redirect: true})
     }

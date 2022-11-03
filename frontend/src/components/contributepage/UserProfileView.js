@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import './UserProfile.css'
-import map from './map.png'
 import leaflet from 'leaflet'
-import { Link } from 'react-router-dom'
 import 'leaflet/dist/leaflet.css';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import Cookies from 'universal-cookie';
 import getTranslation from '../../i18n/'
 import marker from 'leaflet/dist/images/marker-icon.png';
 import markershadow from 'leaflet/dist/images/marker-shadow.png';
 
-const cookies = new Cookies();
 
 /**
  * The actual display of a user profile in the user dashboard
@@ -25,12 +21,11 @@ class UserProfileView extends Component {
    * Toggle the active status of the userprofile
    */
   toggleActivate() {
-      let token = cookies.get('token');
+      const token = this.props.cookies.token;
       this.props.toggleUserprofile(this.props.userprofile.id, token);
   }
 
   render() {
-
       let occupations = [];
       {this.props.userprofile.occupation.map((group, index) => {
           if(group !== 0) {

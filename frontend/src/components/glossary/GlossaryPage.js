@@ -9,6 +9,7 @@ import Stage from '../homepage/Stage'
 import '../homepage/HomePage.css'
 import Footer from '../footer/Footer'
 import GlossaryTeaser from './GlossaryTeaser'
+import StageContainer from "../../containers/StageContainer";
 
 /**
  * The glossary page of the web-portal containing the full glossary
@@ -57,7 +58,7 @@ class GlossaryPage extends Component {
 
 
         <div className="container container-content">
-          <Stage pilotareas={this.props.pilotareas} />
+          <StageContainer pilotareas={this.props.pilotareas} />
             <div className="container-flex">
                 <div className="two-third">
 

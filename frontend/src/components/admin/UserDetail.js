@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Cookies from 'universal-cookie';
 
 /**
  * Form to change user details as admin (projectpartner setting, confirmation of user, deactivate a user)
@@ -36,8 +35,7 @@ class UserDetail extends Component {
      * Save changes to the user by dispatching the changeUserDetailsSuperuser action
      */
     saveChanges() {
-        const cookies = new Cookies();
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.changeUserDetailsSuperuser(this.state.user.id, this.state.user.username, this.state.user.email, this.state.user.confirmed, this.state.user.projectpartner, this.state.user.deactivated, token)
     }
 

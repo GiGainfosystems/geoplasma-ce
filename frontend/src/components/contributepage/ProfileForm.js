@@ -5,14 +5,11 @@ import 'leaflet/dist/leaflet.css';
 import EmailValidator from 'email-validator'
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import getTranslation from '../../i18n/'
-import Cookies from 'universal-cookie';
 import 'react-select/dist/react-select.css';
 import marker from 'leaflet/dist/images/marker-icon.png';
 import markershadow from 'leaflet/dist/images/marker-shadow.png';
 import leaflet from 'leaflet';
 import Select from 'react-select';
-
-const cookies = new Cookies();
 
 /**
  * The form to update a userprofile
@@ -142,7 +139,7 @@ class ProfileForm extends Component {
                   }
               }
           }
-          let token = cookies.get('token');
+          const token = this.props.cookies.values;
           this.props.updateUserprofile(this.state.userprofile.name, this.state.userprofile.occupation, this.state.userprofile.street, this.state.userprofile.zip, this.state.userprofile.city, this.state.userprofile.country, this.state.userprofile.phone, this.state.userprofile.email, website, this.state.userprofile.pilot_area, this.state.lat, this.state.lon, this.state.userprofile.contactform, this.state.userprofile.activated, this.state.userprofile.profile, token)
           redirect = true;
       }

@@ -4,9 +4,7 @@ import Subheader from '../subheader/Subheader'
 import { Redirect, Link } from 'react-router-dom'
 import './Superuser.css'
 import getTranslation from '../../i18n/'
-import Cookies from 'universal-cookie';
 import Select from 'react-select';
-const cookies = new Cookies();
 
 /**
  * The form to create / edit contacts (local contacts on the landing page)
@@ -51,7 +49,7 @@ class ContactForm extends Component {
      * Submit the form by calling the saveLocalContact action with the form state + token
      */
     submitForm() {
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.saveLocalContact(this.state.id, this.state.language, this.state.pilotarea, this.state.contactinfo, token)
         this.setState({redirect: true })
     }

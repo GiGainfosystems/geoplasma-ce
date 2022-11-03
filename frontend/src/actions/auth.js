@@ -1,8 +1,7 @@
 import { SIGNIN_SUCCESSFULL, LOGOUT } from './types'
 import { formRequest, formRequestError, formRequestFinished } from './fetching'
 import config from '../config';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+import {deleteCookie, setCookie} from "./cookies";
 
 /**
  * If a signin war successfull, send the signed in user to the reducer via this action
@@ -51,7 +50,7 @@ export function signIn(email, password) {
             .then((user) => {
                 if(user.isLoggedIn) {
                     dispatch(signinSuccess(user))
-
+                    dispatch(setCookie('token', user.token.token));
                 } else {
                     dispatch(formRequestError(user))
                 }
@@ -72,6 +71,7 @@ export function checkIfLoggedIn(token) {
             .then((response) => {
                 if (!response.ok) {
                     dispatch(signinSuccess(response))
+                    dispatch(setCookie('token', response.token.token));
                 }
                 dispatch(formRequestFinished());
                 return response;
@@ -79,7 +79,7 @@ export function checkIfLoggedIn(token) {
             .then((response) => response.json())
             .then((user) => {
                 if(!user.isLoggedIn) {
-                    cookies.remove('token', { path: '/'});
+                    dispatch(deleteCookie('token'));
                 }
                 dispatch(signinSuccess(user))
             })
@@ -99,7 +99,7 @@ export const removeUserSuccess = (response) => {
 }
 
 /**
- * Send the request to remove a user from the knowledeg platform to the backend
+ * Send the request to remove a user from the knowledge platform to the backend
  * 
  * @param  {} token - The JWT token for authentification
  */
@@ -121,7 +121,7 @@ export function removeUser(token) {
             .then((user) => {
                 if(user.status) {
                     dispatch(removeUserSuccess(user))
-
+                    dispatch(deleteCookie('token'));
                 } else {
                     dispatch(formRequestError(user))
                 }

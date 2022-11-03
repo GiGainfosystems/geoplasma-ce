@@ -6,14 +6,10 @@ import Select from 'react-select';
 import Keywords from '../filterbox/Keywords'
 import 'react-select/dist/react-select.css';
 import './AddContent.css'
-import Cookies from 'universal-cookie';
 import getTranslation from '../../i18n/'
-import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 import Footer from '../footer/Footer'
 import config from '../../config';
-
-const cookies = new Cookies();
 
 /**
  * The form to add content to the knowledge platform for registered users
@@ -133,7 +129,7 @@ class AddContent extends Component {
                }
            }
 
-          let token = cookies.get('token');
+          const token = this.props.cookies.token;
           redirect = true;
           this.props.addContent(this.state.id, this.state.title, this.state.year, this.state.author, this.state.publisher_place, this.state.territorial_coverage, this.state.language, this.state.synopsis, website, this.state.topics, this.state.tags, this.state.internal_id, this.state.external_link, token)
 
@@ -191,7 +187,7 @@ class AddContent extends Component {
    * Remove content by dispatching the according action
    */
   removeContent() {
-      let token = cookies.get('token');
+      const token = this.props.cookies.token;
       this.props.removeContent(this.props.id, token);
       this.setState({redirect: true})
   }
@@ -209,7 +205,7 @@ class AddContent extends Component {
    * This is only possible for users that are marked as project partner
    */
   uploadFile() {
-      let token = cookies.get('token')
+      const token = this.props.cookies.token;
       const formData = new FormData();
       formData.append('file', this.refs.file.files[0]);
       fetch(config.apiBaseUrl+'api/superuser/uploadcontent?token='+token, {

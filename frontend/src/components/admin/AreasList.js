@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Cookies from 'universal-cookie';
 import getTranslation from '../../i18n/'
-import PropTypes from 'prop-types';
 const Fragment = React.Fragment;
-
-const cookies = new Cookies();
 
 /**
  * List the pilot areas that are available and make it possible to edit them
@@ -67,7 +63,7 @@ class AreasList extends Component {
      */
     saveArea() {
         /* Get the token of the Superuser from the cookie for authorization */
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.updateArea(this.state.activeArea, this.state.contact_details,this.state.excel_identifier, this.state.uri, this.state.ne_corner, this.state.sw_corner, this.state.description_en, this.state.description_de, this.state.description_cs, this.state.description_pl, this.state.description_sk, this.state.description_sl, token)
     }
 
@@ -77,7 +73,7 @@ class AreasList extends Component {
      */
     uploadAreas() {
       /* Get token for authorization of Superuser */
-      let token = cookies.get('token');
+      const token = this.props.cookies.token;
       /* Call uploadAreas action via props (SuperuserContainer > Superuser > AreasList) */
       this.props.uploadAreas(token);
     }

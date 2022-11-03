@@ -6,12 +6,10 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import 'react-select/dist/react-select.css';
-import Cookies from 'universal-cookie';
 import getTranslation from '../../i18n/'
 import EmailValidator from 'email-validator'
 import Footer from '../footer/Footer'
 import Select from 'react-select';
-const cookies = new Cookies();
 
 /**
  * The form to add events to the knowledge platform
@@ -175,7 +173,7 @@ class AddEventForm extends Component {
 
       let redirect = false;
        if(errorMessages.length === 0) {
-          let token = cookies.get('token');
+           const token = this.props.cookies.token;
           redirect = true;
           let website = this.state.website;
           if(this.state.website.substring(0,7) !== 'http://') {
@@ -210,7 +208,7 @@ this.setState({redirect: redirect, errors: errors, errorMessages: errorMessages 
    * Remove an event from the knowledge platform
    */
   removeContent() {
-      let token = cookies.get('token');
+      const token = this.props.cookies.token;
       this.props.removeEvent(this.props.id, token);
       this.setState({redirect: true})
   }

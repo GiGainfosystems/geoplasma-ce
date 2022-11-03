@@ -4,10 +4,6 @@ import Subheader from '../subheader/Subheader'
 import { Redirect, Link } from 'react-router-dom'
 import './Superuser.css'
 import getTranslation from '../../i18n/'
-import Cookies from 'universal-cookie';
-
-/** Initialize the cookies to get the token for authorization */
-const cookies = new Cookies();
 
 /**
  * This component gives the superuser the possibility to create,
@@ -120,7 +116,7 @@ class GlossaryForm extends Component {
         /** If no error was found, save entry */
         if(errorMessages.length === 0) {
             /** Get token for authorization from cookies */
-            let token = cookies.get('token');
+            const token = this.props.cookies.token;
             /** User will be redirect to the glossary list after saving the entry */
             redirect = true;
 
@@ -191,7 +187,7 @@ class GlossaryForm extends Component {
     * Actually remove the glossary entry that is identified via its ID
     */
     removeGlossary() {
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.removeGlossary(this.props.id, token);
         this.setState({redirect: true})
     }

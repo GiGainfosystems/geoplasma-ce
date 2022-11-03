@@ -1,10 +1,8 @@
-import getTranslation from '../i18n'
-
 const initialState = {
     knowledge : {
         filters: [
             {
-                label: getTranslation("forms.contentform.language.label"),
+                label: "forms.contentform.language.label",
                 title: 'language',
                 field: 'languages',
                 filter: [],
@@ -12,7 +10,7 @@ const initialState = {
                 additionalFilter: true
             },
             {
-                label: getTranslation("forms.contentform.thematic_coverage.label"),
+                label: "forms.contentform.thematic_coverage.label",
                 title: 'topics',
                 field: 'topics',
                 filter: [],
@@ -23,14 +21,14 @@ const initialState = {
     },
     profiles: [
         {
-            label: getTranslation('userprofile.form.group.label'),
+            label: 'userprofile.form.group.label',
             title: 'occupation',
             field: 'professionalgroups',
             filter: [],
             single: true
         },
         {
-            label: getTranslation('userprofile.form.country.label'),
+            label: 'userprofile.form.country.label',
             title: 'country',
             field: 'countries',
             filter: [],
@@ -39,7 +37,7 @@ const initialState = {
     ],
     events: [
         {
-            label: getTranslation('userprofile.form.country.label'),
+            label: 'userprofile.form.country.label',
             title: 'country',
             field: 'countries',
             filter: [],

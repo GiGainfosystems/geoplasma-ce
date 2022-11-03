@@ -5,8 +5,6 @@ import pl from '../components/header/navigation/languageswitch/pl.svg'
 import sk from '../components/header/navigation/languageswitch/sk.svg'
 import si from '../components/header/navigation/languageswitch/si.svg'
 import { CHANGE_LANGUAGE } from '../actions/types'
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
 const initialState = {
   locale: 'en',
@@ -28,8 +26,6 @@ const initialState = {
 export const language = (state = initialState, action) => {
   switch(action.type) {
     case CHANGE_LANGUAGE:
-    cookies.remove('locale', { path: '/'});
-    cookies.set('locale', action.language, { path: '/'});
       return {
         locale: action.language,
         availableLanguages: state.availableLanguages

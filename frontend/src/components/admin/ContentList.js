@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import ContentDetail from './ContentDetail'
-import PropTypes from 'prop-types';
+import ContentDetailContainer from "../../containers/ContentDetailContainer";
 
 /**
 * This component displays a list of all content and gives the superuser
@@ -55,7 +54,7 @@ class ContentList extends Component {
                         {content.id === this.state.activeContent &&
                         <tr>
                             <td colSpan="6">
-                            <ContentDetail content={content} removeContentSuperuser={this.props.removeContentSuperuser} unclickContent={() => this.unClickContent()} />
+                            <ContentDetailContainer content={content} removeContentSuperuser={this.props.removeContentSuperuser} unclickContent={() => this.unClickContent()} />
                             </td>
                         </tr>
                         }

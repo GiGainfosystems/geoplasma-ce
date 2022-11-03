@@ -1,8 +1,6 @@
 import React from 'react'
 import getTranslation from '../../../../i18n/'
 import InfoPaneMap from './InfoPaneMap';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
 /**
  * The pilot area info pane that appears when getting to a local web gis
@@ -18,7 +16,7 @@ class PilotAreaInfo extends React.Component {
      * Hide the info pane
      */
     hidePane() {
-        cookies.set(this.props.activeArea.uri, false);
+        this.props.setCookie(this.props.activeArea.uri, false);
         this.props.hidePane();
     }
 

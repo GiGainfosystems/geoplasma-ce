@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import getTranslation from '../../i18n/'
 import './LayerControl.css'
-import Cookies from 'universal-cookie';
-
-/** Initialize the use of cookies to get the token for authorization */
-const cookies = new Cookies();
 
 /**
 * Via this component, the GeoServer is mainly controlled.
@@ -40,7 +36,7 @@ class LayerControl extends Component {
     */
     checkExcelFile(layers) {
         /** Get the authorization token from the cookies */
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.readExcelFile(this.props.pilotareas.filter(area => area.uri === this.state.area)[0].excel_identifier, token, layers)
     }
 
@@ -58,7 +54,7 @@ class LayerControl extends Component {
     */
     addLayers() {
         /** Get the authorization token from the cookies */
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         let layers = this.props.fetching.dataFetching.message.compared.layers
         if(this.state.rejected.length > 0) {
           let accepted = [];

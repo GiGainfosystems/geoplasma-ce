@@ -3,6 +3,7 @@ import './UserProfile.css'
 import UserProfileView from './UserProfileView'
 import { Link } from 'react-router-dom'
 import getTranslation from '../../i18n/'
+import UserProfileViewContainer from "../../containers/UserProfileViewContainer";
 
 /**
  * Display a user profile in the user dashboard
@@ -28,7 +29,7 @@ class UserProfile extends Component {
                 <p>{getTranslation("userprofile.no_profile")}</p>
               }
               {userprofile &&
-                <UserProfileView countries={this.props.countries} toggleUserprofile={this.props.toggleUserprofile} pilotareas={this.props.pilotareas} professionalgroups={this.props.professionalgroups} userprofile={this.props.userprofile} />
+                <UserProfileViewContainer countries={this.props.countries} toggleUserprofile={this.props.toggleUserprofile} pilotareas={this.props.pilotareas} professionalgroups={this.props.professionalgroups} userprofile={this.props.userprofile} />
               }
 
         </div>

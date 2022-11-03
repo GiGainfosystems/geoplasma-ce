@@ -1,6 +1,15 @@
 import { connect } from 'react-redux'
 import WebGis from '../components/webgis/reboot/WebGis'
-import { virtualBorehole, getMeasurements, generatePDF, geocodeAddress, reportQuery, getLayers, locationQuery, updateMapProps } from '../actions'
+import {
+  virtualBorehole,
+  getMeasurements,
+  generatePDF,
+  geocodeAddress,
+  reportQuery,
+  getLayers,
+  locationQuery,
+  updateMapProps,
+} from '../actions'
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -63,7 +72,8 @@ const mapStateToProps = (state, ownProps) => {
     report: state.report,
     measurements: state.measurements,
     explanatorynotes: state.explanatorynotes,
-    units: state.units
+    units: state.units,
+    cookies: state.cookies.values,
   }
 }
 
@@ -92,7 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     virtualBorehole: (area, coordinates, srs) => {
       dispatch(virtualBorehole(area, coordinates, srs))
-    }
+    },
   }
 }
 

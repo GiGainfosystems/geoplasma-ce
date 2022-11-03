@@ -1,0 +1,44 @@
+.dialog {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999999;
+    background: rgba(0,0,0,0.4);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.dialog-content {
+    width: 80%;
+    max-width: 620px;
+    background: #fff;
+    margin: 60px auto;
+    box-shadow: 0 2px 50px 0 rgba(0,0,0,.5);
+    pointer-events: all;
+}
+
+.dialog label {
+    text-transform: none;
+    display: flex;
+}
+.dialog input {
+    margin: 0 10px;
+}
+
+.cookie-settings {
+    background: #fff;
+    padding: 10px;
+}
+
+.cookie-btn-group {
+    margin-top: 16px;
+    display: block;
+}
+
+.cookie-btn-group button {
+    margin-right: 16px;
+}
+
+.cookie-settings-fieldset {
+    margin-top: 16px;
+}

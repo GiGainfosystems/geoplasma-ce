@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 // Import child components
 import Header from '../header/Header'
-import Stage from './Stage'
 import './HomePage.css'
 import Footer from '../footer/Footer'
 
 import Sidebar from './Sidebar'
+import StageContainer from "../../containers/StageContainer";
 
 /**
  * The homepage of the web portal
@@ -49,7 +49,7 @@ class HomePage extends Component {
 
 
         <div className="container container-content">
-            <Stage pilotareas={this.props.pilotareas} />
+            <StageContainer pilotareas={this.props.pilotareas} />
             <div className="container-flex">
                 <div className="two-third">
 

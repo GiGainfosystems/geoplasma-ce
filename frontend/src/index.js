@@ -32,8 +32,7 @@ import NotesFormContainer from './containers/NotesFormContainer';
 import ContactFormContainer from './containers/ContactFormContainer'
 import UnitFormContainer from './containers/UnitFormContainer'
 import ExamplesFormContainer from './containers/ExamplesFormContainer'
-//import registerServiceWorker from './registerServiceWorker';
-import Cookies from 'universal-cookie';
+import CookieConsentContainer from './containers/CookieConsentContainer'
 
 import createHistory from 'history/createBrowserHistory'
 import { Route } from 'react-router'
@@ -41,7 +40,6 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore, combineReducers } from 'redux'
-import logger from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 
 import { language } from './reducers/language'
@@ -71,47 +69,23 @@ import { units } from './reducers/units'
 import { examples } from './reducers/examples'
 import { explanatorynotes } from './reducers/explanatory_notes'
 import { professionalgroups } from './reducers/professionalgroups'
-import { getAllData, getAllGISData, getLayers, changeLanguage, getTags, getSiteContent, getPages, getGlossary, checkIfLoggedIn, getEvents, getContent, getUserprofiles, getPilotareas, getProfessionalgroups, getThematicCoverages } from './actions'
+import { cookiesReducer } from './reducers/cookies'
+import {
+    getAllData,
+    getAllGISData,
+    changeLanguage,
+    checkIfLoggedIn,
+    getThematicCoverages,
+    getCookie,
+    setCookie
+} from './actions'
 import ReactGA from 'react-ga'
-
-var disableStr = 'ga-disable-' + 'UA-108798631-1';
-if (document.cookie.indexOf(disableStr + '=true') > -1) {
-  window[disableStr] = true;
-}
-
-ReactGA.initialize('UA-108798631-1');
 ReactGA.set({ anonymizeIp: true });
-function logPageView() {
 
-    window.scrollTo(0,0);
-  ReactGA.set({ page: window.location.pathname + window.location.search });
-  ReactGA.pageview(window.location.pathname + window.location.search);
-
-  return null;
-}
-
-const cookies = new Cookies();
 const history = createHistory();
 const middleware = routerMiddleware(history)
 
-// Check if local language was set already
-let locale = cookies.get('locale');
-// If Locale setting cannot be found in cookie, set english as default language and save in cookie
-if(!locale) {
-    let browser_language = navigator.language || navigator.userLanguage;
-
-    let acceptedLanguages = ["cs", "de", "en", "pl", "sk", "sl"];
-    let checkForAcceptedLanguage = acceptedLanguages.filter(language => language === browser_language);
-    if(checkForAcceptedLanguage.length === 0) {
-      locale = 'en';
-    }
-    else {
-       locale = browser_language;
-    }
-    cookies.set('locale', locale, { path: '/'});
-}
-
-let store = createStore(combineReducers({
+export const store = createStore(combineReducers({
       language,
       categories,
       user,
@@ -139,6 +113,7 @@ let store = createStore(combineReducers({
       units,
       links,
       examples,
+      cookies: cookiesReducer,
     router: routerReducer
 }),
     applyMiddleware(middleware, ReduxThunk)
@@ -153,20 +128,62 @@ if (window.location.pathname.indexOf("/webgis") === 0 ) {
 } else {
   store.dispatch(getAllData())
 }
+
+// Load cookie values into app state
+store.dispatch(getCookie('token'));
+store.dispatch(getCookie('locale'));
+store.dispatch(getCookie('consent'));
+let { locale } = store.getState().cookies.values
+
+// If Locale setting cannot be found in cookie, set english as default language and save in cookie
+if(!locale) {
+    const browser_language = navigator.language || navigator.userLanguage;
+    const acceptedLanguages = ["cs", "de", "en", "pl", "sk", "sl"];
+    let checkForAcceptedLanguage = acceptedLanguages.filter(language => language === browser_language);
+    if (checkForAcceptedLanguage.length === 0) {
+        locale = 'en';
+    } else {
+        locale = browser_language;
+    }
+    store.dispatch(setCookie('locale', locale));
+}
 store.dispatch(changeLanguage(locale))
 
-let token = cookies.get('token');
-if(token) {
+let { token } = store.getState().cookies.values;
+if (token) {
     store.dispatch(checkIfLoggedIn(token))
-} 
+}
 
 store.dispatch(getThematicCoverages())
+
+//  Google Analytics
+const gaId = 'UA-108798631-1';
+const disableStr = 'ga-disable-' + gaId;
+if (document.cookie.indexOf(disableStr + '=true') > -1) {
+    window[disableStr] = true;
+}
+ReactGA.initialize(gaId);
+
+function logPageView() {
+    window.scrollTo(0,0);
+    if (store.getState().cookies.consent !== 'all') {
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+    } else {
+        window[disableStr] = false;
+    }
+    ReactGA.set({ page: window.location.pathname + window.location.search });
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
+    return null;
+}
 
 ReactDOM.render(
   <Provider store={store}>
       <ConnectedRouter history={history}>
 
         <div>
+            <Route path="/" component={CookieConsentContainer} />
             <Route path="/" component={logPageView} />
             <Route exact path="/" component={HomepageContainer} />
           <Route exact path="/content/:url" component={ContentPageContainer} />

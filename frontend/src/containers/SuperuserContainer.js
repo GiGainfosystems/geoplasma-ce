@@ -1,6 +1,25 @@
 import { connect } from 'react-redux'
 import Superuser from '../components/admin/Superuser'
-import { updateLinks, uploadAreas, updateFieldmeasurements, saveNote, addLayers, updatePilotarea, readExcelFile, getLayers, loadSuperuserData, removeSiteContent, removePage, savePage, saveSiteContent, removeEventSuperuser, removeContentSuperuser, changeUserDetailsSuperuser, signOut } from '../actions'
+import {
+    updateLinks,
+    uploadAreas,
+    updateFieldmeasurements,
+    saveNote,
+    addLayers,
+    updatePilotarea,
+    readExcelFile,
+    getLayers,
+    loadSuperuserData,
+    removeSiteContent,
+    removePage,
+    savePage,
+    saveSiteContent,
+    removeEventSuperuser,
+    removeContentSuperuser,
+    changeUserDetailsSuperuser,
+    signOut,
+    deleteCookie
+} from '../actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -19,7 +38,8 @@ const mapStateToProps = (state) => {
     explanatorynotes: state.explanatorynotes.notes,
     localcontacts: state.localcontacts,
     units: state.units,
-    examples: state.examples
+    examples: state.examples,
+    cookies: state.cookies.values
   }
 }
 
@@ -66,6 +86,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         signOut: () => {
             dispatch(signOut())
+            dispatch(deleteCookie('token'))
         },
         uploadAreas: (token) => {
             dispatch(uploadAreas(token))
@@ -75,6 +96,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateFieldmeasurements: (area, token) => {
             dispatch(updateFieldmeasurements(area, token))
+        },
+        deleteCookie: (name) => {
+            dispatch(deleteCookie(name))
         },
     }
 }

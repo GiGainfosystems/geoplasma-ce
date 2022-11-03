@@ -88,7 +88,7 @@ class Filter extends Component {
             <div>
                 <div>
                 {this.props.filter.filter.map((filter, index) =>
-                  <button key={index} className={"btn " + (filter.active ? "btn-green" : "btn-gray")} onClick={() => this.toggleFilter(filter.id)}>{filter.label}</button>
+                  <button key={index} className={"btn " + (filter.active ? "btn-green" : "btn-gray")} onClick={() => this.toggleFilter(filter.id)}>{getTranslation(filter.label)}</button>
                 )}
                 </div>
                 <div>

@@ -1,14 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
-  ImageSideButton,
-  Block,
-  addNewBlock,
   createEditorState,
   Editor,
 } from 'medium-draft';
 import 'medium-draft/lib/index.css';
-import CustomImageSideButton from './RteImages'
-import { convertFromHTML } from 'draft-convert';
+import CustomImageSideButtonContainer from "../../containers/CustomImageSideButtonContainer";
 import mediumDraftExporter from 'medium-draft/lib/exporter';
 import {
   convertToRaw
@@ -23,21 +19,14 @@ class Rte extends React.Component {
 
     this.sideButtons = [{
       title: 'Image',
-      component: CustomImageSideButton,
+      component: CustomImageSideButtonContainer,
     }];
-
-//    this.state = {
-//      editorState: createEditorState(), // for empty content
-//    };
 
     const editorState = createEditorState(convertToRaw(mediumDraftImporter(props.content)));
 
-
-    //let editorState = createEditorState(rawState);
     this.state = {
       editorState
     };
-
 
     this.onChange = (editorState) => {
         this.props.updateText(mediumDraftExporter(this.state.editorState.getCurrentContent()));

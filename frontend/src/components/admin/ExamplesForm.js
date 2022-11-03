@@ -5,10 +5,7 @@ import { Redirect, Link } from 'react-router-dom'
 import Select from 'react-select';
 import './Superuser.css'
 import getTranslation from '../../i18n/'
-import Cookies from 'universal-cookie';
 import Rte from './Rte'
-
-const cookies = new Cookies();
 
 /**
  * The form to add or edit case studies
@@ -76,7 +73,7 @@ class ExamplesForm extends Component {
      * Submit the form by calling the saveExample action with the form state + token
      */
     submitForm() {
-        let token = cookies.get('token');
+        const token = this.props.cookie.token;
         let redirect = true;
 
         this.props.saveExample(this.state.id, this.state.pilotarea_id, this.state.title, this.state.address_of_project, this.state.gps_coordinates, this.state.usage_form, this.state.heating_capacity, this.state.heating_production, this.state.cooling_capacity, this.state.cooling_production, this.state.seasonal_performance, this.state.number_of_tubes_wells, this.state.depth_of_tubes_wells, this.state.geothermal_coverage_rate, this.state.supply_temperature_borehole, this.state.supply_temperature_heating, this.state.supply_temperature_cooling, this.state.planning_company, this.state.specialties_of_project, this.state.drilling_company, this.state.heating_installer, this.state.thermal_response_test, this.state.year_of_installation, this.state.web_link, this.state.description, this.state.introduction,token)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ContactDetail from './ContactDetail'
+import ContactDetailContainer from '../../containers/ContactDetailContainer'
 import { Link } from 'react-router-dom'
 
 /**
@@ -45,7 +45,7 @@ class ContactsList extends Component {
                         {contact.id === this.state.activeContact &&
                         <tr>
                             <td colSpan="6">
-                            <ContactDetail contact={contact} />
+                                <ContactDetailContainer contact={contact} />
                             </td>
                         </tr>
                         }

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ContactForm from '../components/admin/ContactForm'
-import { saveLocalContact } from '../actions'
+import { saveLocalContact } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
     let id;
@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
     fetching: state.fetching,
     language: state.language,
     pilotareas: state.pilotareas,
-    id: id
+    id: id,
+    cookies: state.cookies.values,
   }
 }
 

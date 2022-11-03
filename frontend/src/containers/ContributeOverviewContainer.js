@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ContributeOverview from '../components/contributepage/ContributeOverview'
-import { signOut, toggleUserprofile, removeUser } from '../actions'
+import {signOut, toggleUserprofile, removeUser, deleteCookie} from '../actions'
 
 const mapStateToProps = (state) => {
 
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
     countries: state.countries,
     pages: state.pages,
     language: state.language,
+    cookies: state.cookies.values,
   }
 }
 
@@ -22,13 +23,17 @@ const mapDispatchToProps = (dispatch) => {
     return {
         signOut: () => {
             dispatch(signOut())
+            dispatch(deleteCookie('token'))
         },
         toggleUserprofile: (id, token) => {
             dispatch(toggleUserprofile(id,token))
         },
         removeUser: (token) => {
           dispatch(removeUser(token))
-        }
+        },
+        deleteCookie: (name) => {
+            dispatch(deleteCookie(name))
+        },
     }
 }
 

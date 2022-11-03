@@ -4,10 +4,8 @@ import Subheader from '../subheader/Subheader'
 import { Redirect, Link } from 'react-router-dom'
 import './Superuser.css'
 import getTranslation from '../../i18n/'
-import Cookies from 'universal-cookie';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-const cookies = new Cookies();
 
 /**
  * Form to add / edit pages on the web portal
@@ -93,8 +91,8 @@ class PageForm extends Component {
 
         let redirect = false;
          if(errorMessages.length === 0) {
-            let token = cookies.get('token');
-            redirect = true;
+             const token = this.props.cookies.token;
+             redirect = true;
             this.props.savePage(this.state.id, this.state.title, this.state.title_de, this.state.title_cs, this.state.title_pl, this.state.title_sk, this.state.title_sl, this.state.navigation, this.state.url, token)
             this.setState({redirect: redirect, errors: errors, errorMessages: errorMessages })
         }
@@ -137,7 +135,7 @@ class PageForm extends Component {
     }
 
     removeGlossary() {
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.removePage(this.props.id, token);
         this.setState({redirect: true})
     }

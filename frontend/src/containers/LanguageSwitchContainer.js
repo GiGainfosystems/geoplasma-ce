@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import LanguageSwitch from '../components/header/navigation/languageswitch/LanguageSwitch'
-import { changeLanguage } from '../actions'
-
+import {changeLanguage, setCookie} from '../actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -12,6 +11,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeLanguage: (language) => {
+      dispatch(setCookie('locale', language))
       dispatch(changeLanguage(language))
     }
   }

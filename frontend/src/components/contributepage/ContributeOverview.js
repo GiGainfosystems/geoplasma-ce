@@ -5,11 +5,10 @@ import EventsContributed from './EventsContributed'
 import ContentContributed from './ContentContributed'
 import UserProfile from './UserProfile'
 import { Redirect } from 'react-router-dom'
-import Cookies from 'universal-cookie';
 import getTranslation from '../../i18n/'
 import Footer from '../footer/Footer'
 import { Link } from 'react-router-dom'
-const cookies = new Cookies();
+import {deleteCookie} from "../../actions";
 
 /**
  * The dashboard that a user sees upon logging into the knowledge platform
@@ -26,7 +25,7 @@ class ContributeOverview extends Component {
      * Log a user out
      */
     logOut() {
-        cookies.remove('token', { path: '/'});
+        this.props.deleteCookie('token');
         this.props.signOut();
         this.setState({redirect: true});
     }
@@ -49,7 +48,7 @@ class ContributeOverview extends Component {
      * Remove a user from the knowledge platform
      */
     removeUser() {
-      let token = cookies.get('token')
+      const token = this.props.cookies.token;
       this.props.removeUser(token)
     }
 

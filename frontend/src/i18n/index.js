@@ -1,21 +1,14 @@
-//import en from './en'
 import en from './en/en'
 import de from './de/de'
 import pl from './pl/pl'
 import sk from './sk/sk'
 import sl from './sl/sl'
 import cs from './cs/cs'
+import {store} from "../index";
 
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
-const getTranslation = (key, variable) => {
-
-  let locale = cookies.get('locale');
-  if(!locale) {
-    locale = 'en';
-  }
-
+export const getTranslation = (key, variable) => {
+  const locale = store.getState().language.locale;
   let string;
   if(locale === 'en') { string = findString(key, en) }
   else if(locale === 'de') { string = findString(key, de) }
@@ -52,6 +45,5 @@ const findString = (key, language) => {
     }
     return string;
 }
-
 
 export default getTranslation

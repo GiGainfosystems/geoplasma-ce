@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import './ContributePage.css'
-import Cookies from 'universal-cookie';
 import Header from '../header/Header'
 import Subheader from '../subheader/Subheader'
 import SignInForm from './SignInForm'
 import SignUpForm from './SignUpForm'
 import { Redirect } from 'react-router-dom'
 import Footer from '../footer/Footer'
-
-const cookies = new Cookies();
 
 /**
  * The component that controls if a user sees the dashboard etc.
@@ -17,7 +14,7 @@ class ContributePage extends Component {
 
     componentDidMount() {
 
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         if(token) {
             this.props.checkIfLoggedIn(token);
         }

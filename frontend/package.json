@@ -48,8 +48,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "enzyme": "^2.9.1",
-    "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1"
   }
 }

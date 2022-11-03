@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
     languages: state.language.availableLanguages,
     topics: state.topics,
     tags: state.tags,
-    pages: state.pages
+    pages: state.pages,
+    cookies: state.cookies.values,
   }
 }
 

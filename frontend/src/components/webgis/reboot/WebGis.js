@@ -11,9 +11,7 @@ import Overlay from '../../overlay/Overlay'
 import SwitchDialog from '../SwitchDialog'
 import '../WebGis.css';
 import 'leaflet/dist/leaflet.css';
-import Cookies from 'universal-cookie';
 import getTranslation from '../../../i18n/'
-const cookies = new Cookies();
 
 /**
  * Web GIS main component. Controls the map display and the location queries + report
@@ -56,7 +54,7 @@ class WebGis extends React.Component {
         if(nextProps.layers) {
             this.setState({ layers: nextProps.layers});
         }
-        const pilotareaInfo = cookies.get(nextProps.activeArea.uri);
+        const pilotareaInfo = nextProps.cookies[nextProps.activeArea.uri];
         if((nextProps.activeArea.uri) && (!this.state.disabledInfoPane) && (pilotareaInfo != 'false')) {
             this.setState({ infoPane: true })
         }

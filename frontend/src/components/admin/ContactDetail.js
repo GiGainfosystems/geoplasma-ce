@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import Cookies from 'universal-cookie';
-
-/* Initialize cookies to get access to token for authorization */
-const cookies = new Cookies();
 
 /**
  * This component gives the superuser the possibility to remove
@@ -29,7 +25,7 @@ class ContactDetail extends Component {
     * Remove the contact that is selected
     */
    removeContact() {
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.removeContact(this.state.contact.id, token)
     }
 

@@ -4,8 +4,6 @@ import Subheader from '../subheader/Subheader'
 import { Redirect, Link } from 'react-router-dom'
 import './Superuser.css'
 import getTranslation from '../../i18n/'
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
 /**
  * The form to add / edit explanatory notes for the web GIS layers
@@ -94,8 +92,8 @@ class NotesForm extends Component {
 
         let redirect = false;
          if(errorMessages.length === 0) {
-            let token = cookies.get('token');
-            redirect = true;
+             const token = this.props.cookies.token;
+             redirect = true;
 
             this.props.saveNote(this.state.id, this.state.key, this.state.explanatory_note, this.state.explanatory_note_de, this.state.explanatory_note_cz, this.state.explanatory_note_pl, this.state.explanatory_note_sk, this.state.explanatory_note_sl, this.state.layer_description, this.state.layer_description_de, this.state.layer_description_cz, this.state.layer_description_pl, this.state.layer_description_sk, this.state.layer_description_sl, token)
             this.setState({redirect: redirect, errors: errors, errorMessages: errorMessages })

@@ -1,23 +1,21 @@
 import React, { Component } from 'react'
 import Header from '../header/Header'
 import Subheader from '../subheader/Subheader'
-import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom'
 import UserList from './UserList'
 import ContentList from './ContentList'
 import GlossaryList from './GlossaryList'
 import NotesList from './NotesList'
 import EventList from './EventList'
-import PagesList from './PagesList'
+import PagesListContainer from "../../containers/PagesListContainer";
 import LayerControl from './LayerControl'
 import AreasList from './AreasList'
 import ContactList from './ContactsList'
 import UnitList from './UnitList'
-import FieldMeasurements from './FieldMeasurements'
+import FieldMeasurementsContainer from "../../containers/FieldMeasurementsContainer";
 import Links from './Links';
 import ExamplesList from './ExamplesList'
 import './Superuser.css'
-const cookies = new Cookies();
 
 /**
  * Dashboard for the admin of the web-portal
@@ -32,7 +30,7 @@ class Superuser extends Component {
 
     componentDidMount() {
 
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         if(this.props.user.superuser) {
             this.props.loadSuperuserData(token);
         } else {
@@ -52,7 +50,7 @@ class Superuser extends Component {
      * Logout from the web portal
      */
     logOut() {
-        cookies.remove('token', { path: '/'});
+        this.props.deleteCookie('token');
         this.props.signOut();
         this.setState({redirect: true});
     }
@@ -103,7 +101,7 @@ class Superuser extends Component {
                     }
 
                     {this.state.active === 'content' &&
-                        <PagesList removePage={this.props.removePage} fetching={this.props.fetching} users={this.props.superuser.users} pages={this.props.pages} sitecontent ={this.props.sitecontent} removeEventSuperuser={this.props.removeEventSuperuser} />
+                        <PagesListContainer removePage={this.props.removePage} fetching={this.props.fetching} users={this.props.superuser.users} pages={this.props.pages} sitecontent ={this.props.sitecontent} removeEventSuperuser={this.props.removeEventSuperuser} />
                     }
 
                     {this.state.active === 'areas' &&
@@ -120,7 +118,7 @@ class Superuser extends Component {
                         <ContactList contacts={this.props.localcontacts} />
                     }
                     {this.state.active === 'fieldmeasurements' &&
-                        <FieldMeasurements updateFieldmeasurements={this.props.updateFieldmeasurements} fetching={this.props.fetching} pilotareas={this.props.pilotareas} />
+                        <FieldMeasurementsContainer updateFieldmeasurements={this.props.updateFieldmeasurements} fetching={this.props.fetching} pilotareas={this.props.pilotareas} />
                     }
                     {this.state.active === 'units' &&
                         <UnitList units={this.props.units} />

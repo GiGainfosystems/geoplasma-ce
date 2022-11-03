@@ -10,7 +10,7 @@ import { loadProfessionalgroupsSuccess } from './professionalgroups'
 import { loadSiteContentSuccess } from './sitecontent'
 import { loadTagsSuccess } from './tags'
 import { loadNotesSuccess } from './explanatorynotes'
-import { loadContactsSuccess, loadLocalContactsSuccess } from './contact'
+import { loadLocalContactsSuccess } from './contact'
 import { loadUserprofilesSuccess } from './userprofiles'
 import { loadUnitsSuccess } from './units';
 import { loadLinksSuccess } from './links';
@@ -38,6 +38,7 @@ export * from './measurements'
 export * from './units'
 export * from './links'
 export * from './examples'
+export * from './cookies'
 
 /**
  * Change the language of the web portal

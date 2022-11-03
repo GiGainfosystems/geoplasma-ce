@@ -1,6 +1,16 @@
 import { connect } from 'react-redux'
 import PageForm from '../components/admin/PageForm'
-import { loadSuperuserData, removeSiteContent, removePage, savePage, saveSiteContent, removeEventSuperuser, removeContentSuperuser, changeUserDetailsSuperuser, signOut } from '../actions'
+import {
+    loadSuperuserData,
+    removeSiteContent,
+    savePage,
+    saveSiteContent,
+    removeEventSuperuser,
+    removeContentSuperuser,
+    changeUserDetailsSuperuser,
+    signOut,
+    deleteCookie
+} from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
 
@@ -20,7 +30,8 @@ const mapStateToProps = (state, ownProps) => {
     pages: state.pages,
     sitecontent: state.sitecontent,
     language: state.language,
-    page
+    page,
+    cookies: state.cookies.values
   }
 }
 
@@ -52,6 +63,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         signOut: () => {
             dispatch(signOut())
+            dispatch(deleteCookie('token'))
         }
     }
 }

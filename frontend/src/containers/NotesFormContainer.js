@@ -19,7 +19,8 @@ const mapStateToProps = (state, ownProps) => {
     id: id,
     pages: state.pages,
     language: state.language,
-    explanatorynotes: state.explanatorynotes.notes
+    explanatorynotes: state.explanatorynotes.notes,
+    cookies: state.cookies.values
   }
 }
 

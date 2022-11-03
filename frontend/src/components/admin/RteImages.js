@@ -1,14 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   ImageSideButton,
   Block,
   addNewBlock,
-  createEditorState,
-  Editor,
 } from 'medium-draft';
-import Cookies from 'universal-cookie';
 import config from '../../config'
-const cookies = new Cookies();
 
 class CustomImageSideButton extends ImageSideButton {
 
@@ -17,7 +13,7 @@ class CustomImageSideButton extends ImageSideButton {
   it is an image or not.
   */
   onChange(e) {
-      let token = cookies.get('token')
+    const token = this.props.cookies.token;
     const file = e.target.files[0];
     if (file.type.indexOf('image/') === 0) {
       // This is a post request to server endpoint with image as `image`

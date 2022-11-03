@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import Cookies from 'universal-cookie';
-
-/* Initialize cookies to get access to token for authorization */
-const cookies = new Cookies();
 
 /**
  * This component gives the superuser the possibility to remove
@@ -33,7 +29,7 @@ class EventDetail extends Component {
     */
     removeContent() {
         /* Get the token from the cookie for superuser authorization */
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         /* Call the removeEventSuperuser action via props */
         this.props.removeEventSuperuser(this.state.event.id, token)
     }

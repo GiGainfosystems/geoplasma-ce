@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import MyData from '../components/contributepage/MyData'
-import { signOut, toggleUserprofile, removeUser } from '../actions'
+import {signOut, toggleUserprofile, removeUser, deleteCookie} from '../actions'
 
 const mapStateToProps = (state) => {
 
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
     countries: state.countries,
     pages: state.pages,
     language: state.language,
+    cookies: state.cookies.values,
   }
 }
 
@@ -22,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         signOut: () => {
             dispatch(signOut())
+            dispatch(deleteCookie('token'))
         },
         toggleUserprofile: (id, token) => {
             dispatch(toggleUserprofile(id,token))

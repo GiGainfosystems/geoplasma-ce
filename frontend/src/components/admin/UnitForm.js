@@ -5,9 +5,6 @@ import { Redirect, Link } from 'react-router-dom'
 import Select from 'react-select';
 import './Superuser.css'
 import getTranslation from '../../i18n/'
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
 
 /**
  * Form to add or edit a unit for the virtual boreholes
@@ -66,8 +63,7 @@ class UnitForm extends Component {
      * Save the unit by dispatching the save
      */
     submitForm() {
-    
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         let redirect = true;
 
         this.props.saveUnit(this.state.id, this.state.color, this.state.pilotarea_id, this.state.identifier, this.state.title_en, this.state.title_de, this.state.title_cz, this.state.title_pl, this.state.title_sk, this.state.title_sl, this.state.description_en, this.state.description_de, this.state.description_cz, this.state.description_pl, this.state.description_sk, this.state.description_sl, token)
@@ -120,7 +116,7 @@ class UnitForm extends Component {
      * Remove the unit by dispatching the removeUnit action
      */
     removeUnit() {
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.removeUnit(this.props.id, token);
         this.setState({redirect: true})
     }

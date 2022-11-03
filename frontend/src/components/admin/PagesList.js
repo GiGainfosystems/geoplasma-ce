@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
 /**
  * List the pages on the web portal and the contents on them
@@ -18,7 +16,7 @@ class PagesList extends Component {
      * @param  {} id - ID of the page that should be deleted
      */
     removePage(id) {
-        let token = cookies.get('token');
+        const token = this.props.cookies.token;
         this.props.removePage(id, token)
     }
 

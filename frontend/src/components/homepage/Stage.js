@@ -137,7 +137,7 @@ class Stage extends Component {
                         <li className="dropdown">Web GIS
                             <ul>
                                 {this.props.pilotareas.map(area =>
-                                    <li key={area.id}><Link to={"/webgis/"+area.uri}>{getTranslation(area.name)}</Link></li>    
+                                    <li key={area.id}><Link to={"/webgis/"+area.uri}>{getTranslation(area.name)}</Link></li>
                                 )}
                             </ul>    
                         </li>

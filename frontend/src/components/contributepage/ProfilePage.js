@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './UserProfile.css'
 import Header from '../header/Header'
-import ProfileForm from './ProfileForm'
+import ProfileFormContainer from "../../containers/ProfileFormContainer";
 import Subheader from '../subheader/Subheader'
 import getTranslation from '../../i18n/'
 import Footer from '../footer/Footer'
@@ -58,7 +58,7 @@ class ProfilePage extends Component {
                     </div>
                 }
                 {!fetching &&
-                    <ProfileForm lat={lat} lon={lon} countries={this.props.countries} pilotareas={this.props.pilotareas} professionalgroups={this.props.professionalgroups} geocodeAddress={this.props.geocodeAddress} updateUserprofile={this.props.updateUserprofile} userprofile={userprofile} fetching={this.props.fetching} user={this.props.user} />
+                    <ProfileFormContainer lat={lat} lon={lon} countries={this.props.countries} pilotareas={this.props.pilotareas} professionalgroups={this.props.professionalgroups} geocodeAddress={this.props.geocodeAddress} updateUserprofile={this.props.updateUserprofile} userprofile={userprofile} fetching={this.props.fetching} user={this.props.user} />
                 }
               </div>
             </div>

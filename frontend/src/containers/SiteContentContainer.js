@@ -1,6 +1,15 @@
 import { connect } from 'react-redux'
 import SiteContentForm from '../components/admin/SiteContentForm'
-import { loadSuperuserData, removeSiteContent, removePage, savePage, saveSiteContent, removeEventSuperuser, removeContentSuperuser, changeUserDetailsSuperuser, signOut } from '../actions'
+import {
+    loadSuperuserData,
+    removeSiteContent,
+    saveSiteContent,
+    removeEventSuperuser,
+    removeContentSuperuser,
+    changeUserDetailsSuperuser,
+    signOut,
+    deleteCookie
+} from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -16,6 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     page: ownProps.match.params.page,
     id: ownProps.match.params.id,
     language: state.language,
+    cookies: state.cookies.values,
   }
 }
 
@@ -41,6 +51,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         signOut: () => {
             dispatch(signOut())
+            dispatch(deleteCookie('token'))
         }
     }
 }

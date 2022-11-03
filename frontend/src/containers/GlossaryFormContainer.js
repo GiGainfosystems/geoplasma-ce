@@ -19,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
     id: id,
     pages: state.pages,
     language: state.language,
+    cookies: state.cookies.values,
   }
 }
 
