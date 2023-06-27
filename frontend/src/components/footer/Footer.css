@@ -24,7 +24,7 @@
 
 .jump-to-top {
     position: fixed;
-    bottom: 20px;
+    bottom: 42px;
     left: 50%;
     transform: translate(-50%,0);
     height: 30px;

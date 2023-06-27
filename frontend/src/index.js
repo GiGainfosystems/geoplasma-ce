@@ -77,7 +77,7 @@ import {
     checkIfLoggedIn,
     getThematicCoverages,
     getCookie,
-    setCookie
+    setCookie, deleteCookie
 } from './actions'
 import ReactGA from 'react-ga'
 ReactGA.set({ anonymizeIp: true });
@@ -129,10 +129,15 @@ if (window.location.pathname.indexOf("/webgis") === 0 ) {
   store.dispatch(getAllData())
 }
 
+const gaId = 'UA-108798631-1';
+const disableStr = 'ga-disable-' + gaId;
+
 // Load cookie values into app state
 store.dispatch(getCookie('token'));
 store.dispatch(getCookie('locale'));
 store.dispatch(getCookie('consent'));
+store.dispatch(getCookie(disableStr));
+
 let { locale } = store.getState().cookies.values
 
 // If Locale setting cannot be found in cookie, set english as default language and save in cookie
@@ -157,8 +162,6 @@ if (token) {
 store.dispatch(getThematicCoverages())
 
 //  Google Analytics
-const gaId = 'UA-108798631-1';
-const disableStr = 'ga-disable-' + gaId;
 if (document.cookie.indexOf(disableStr + '=true') > -1) {
     window[disableStr] = true;
 }
@@ -167,13 +170,14 @@ ReactGA.initialize(gaId);
 function logPageView() {
     window.scrollTo(0,0);
     if (store.getState().cookies.consent !== 'all') {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        store.dispatch(setCookie(disableStr, true))
         window[disableStr] = true;
+        ReactGA.set({ page: window.location.pathname + window.location.search });
+        ReactGA.pageview(window.location.pathname + window.location.search);
     } else {
+        store.dispatch(deleteCookie(disableStr))
         window[disableStr] = false;
     }
-    ReactGA.set({ page: window.location.pathname + window.location.search });
-    ReactGA.pageview(window.location.pathname + window.location.search);
 
     return null;
 }
