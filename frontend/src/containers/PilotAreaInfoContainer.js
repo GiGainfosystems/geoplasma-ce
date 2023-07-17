@@ -1,5 +1,6 @@
 import { connect} from "react-redux";
 import { setCookie } from "../actions";
+import PilotAreaInfo from "../components/webgis/reboot/subcomponents/PilotAreaInfo";
 
 
 const mapDispatchToProps = (dispatch) => {

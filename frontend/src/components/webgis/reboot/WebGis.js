@@ -5,7 +5,7 @@ import Menu from './subcomponents/Menu'
 import ReportPane from './subcomponents/ReportPane'
 import { getLayers } from './helper/getLayers';
 import Legend from './subcomponents/Legend'
-import PilotAreaInfo from './subcomponents/PilotAreaInfo'
+import PilotAreaInfoContainer from '../../../containers/PilotAreaInfoContainer';
 import InfoOverlay from './subcomponents/InfoOverlay';
 import Overlay from '../../overlay/Overlay'
 import SwitchDialog from '../SwitchDialog'
@@ -200,7 +200,7 @@ class WebGis extends React.Component {
                 </div>
 
                 <div className="webgis-container">
-                    <PilotAreaInfo activeLanguage={languageCode} activeArea={this.props.activeArea} show={this.state.infoPane} bounds={this.props.bounds} hidePane={() => this.hidePane()} />
+                    <PilotAreaInfoContainer activeLanguage={languageCode} activeArea={this.props.activeArea} show={this.state.infoPane} bounds={this.props.bounds} hidePane={() => this.hidePane()} />
                     <MapView measurements={this.props.measurements} showMeasurements={this.state.measurements} map={this.mapRef} mapRef={el => this.mapRef = el} locationCenter={() => this.locationCenter()} expertCenter={this.state.expertCenter} expertMarkers={this.state.expertMarkers} addressCenter={this.state.addressCenter} fetching={this.props.fetching} center={this.state.center} addressMarkers={this.state.addressMarkers} reportLayers={layers.reportLayers} showReport={() => this.showReport()} query={this.props.query} language={activeLanguage} locationQuery={this.props.locationQuery} activeLayer={layers.activeLayer} activeArea={this.props.activeArea} bounds={this.props.bounds} report={this.props.report} />
                     {this.state.infoOverlay &&
                         <InfoOverlay closeOverlay={() => this.closeOverlay()} />
