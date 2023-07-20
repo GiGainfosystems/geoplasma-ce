@@ -11,6 +11,7 @@ RUN echo "api.geoplasma-ce.eu" >> /etc/hosts
 RUN apt-get update && apt-get install -y wget gnupg
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" >> /etc/apt/sources.list.d/pgdg.list
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+
 RUN apt-get update && apt-get install -y \ 
     postgresql-server-dev-9.6 postgresql-9.6 postgresql-9.6-postgis-2.4 postgresql-9.6-postgis-2.4-scripts \
     unzip ssh rsync gdal-bin zlib1g-dev libpng-dev ant openjdk-8-jre-headless openjdk-8-jdk-headless \

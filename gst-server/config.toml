@@ -6,9 +6,11 @@ cert_pwd = "G3opl4sma!"
 license_path = "/etc/GiGa/license/gst3.lic"
 
 [database]
-url = "postgresql://gst:gst@localhost/gst"
+url = "postgresql://gst:gst@postgres/gst"
 
 [storage]
 tile_size = 25000
 data_path = '/var/lib/gstdata/'
 cpu_count = 4
+
+
