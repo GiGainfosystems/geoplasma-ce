@@ -18,9 +18,6 @@ RUN rm -rf /etc/apt/sources.list.d/buster.list &&\
 # make sure we can smoothly install libpq-dev, c.f. https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
 RUN mkdir -p /usr/share/man/man1 && mkdir -p /usr/share/man/man7
 
-RUN echo "portal.geoplasma-ce.eu" >> /etc/hosts &&\
-    echo "api.geoplasma-ce.eu" >> /etc/hosts
-
 RUN apt-get update && apt-get install -y \ 
     gnupg libpq-dev wget certbot \
     libcurl4-gnutls-dev \

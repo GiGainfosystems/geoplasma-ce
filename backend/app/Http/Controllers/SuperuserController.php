@@ -277,7 +277,7 @@ class SuperuserController extends Controller
       $srs = $request->json('srs');
 
       $bodies = Body::where('name','=',$area)->first();
-      
+
       $host = env("GST_HOST", "");
       $port = env("GST_PORT", "");
       $dbuser = env("GST_USER", "");
@@ -378,7 +378,9 @@ class SuperuserController extends Controller
             ];
         } else {
             $client = new Client(['http_errors' => false]);
-            $res = $client->request('GET', $response->imageUrl);
+            $res = $client->request('GET', $response->imageUrl, [
+                'verify' => false
+            ]);
             $statuscode = $res->getStatusCode();
             if($statuscode === 200) {
                 $data = $res->getBody();

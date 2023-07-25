@@ -1,12 +1,11 @@
 version: '3.5'
 services:
   postgres:
-  # /usr/lib/postgresql/12/bin/pg_upgrade --old-datadir=/var/lib/postgresql/10/main --new-datadir=/var/lib/postgresql/12/main --old-bindir=/usr/lib/postgresql/10/bin --new-bindir=/usr/lib/postgresql/12/bin --old-options '-c config_file=/etc/postgresql/10/main/postgresql.conf' --new-options '-c config_file=/etc/postgresql/12/main/postgresql.conf'
     restart: always
-    image: postgis/postgis:15-3.3-alpine
+    image: postgis/postgis:14-3.3-alpine
     environment:
-      POSTGRES_PASSWORD: gst3
-      POSTGRES_USER: gst3
+      POSTGRES_PASSWORD: gst
+      POSTGRES_USER: gst
       PGDATA: /var/lib/postgresql/data/pgdata
     stop_grace_period: 120s
     networks:
@@ -15,7 +14,8 @@ services:
           - postgres
         ipv4_address: 192.168.7.2
     volumes:
-      - "pgdata:/var/lib/postgresql/data/pgdata"
+      #- "/home/adminplasma/var/geoplasma/new-data:/var/lib/postgresql/data/"
+      - "pgdata:/var/lib/postgresql/data/"
   apache:
     restart: "always"
     build:
@@ -24,39 +24,39 @@ services:
       args:
        - ACTIVATE_SSL=true
     environment:
-      WEB_PHP_SOCKET: "192.168.7.3:9000"
-      WEB_DOCUMENT_ROOT: "/usr/GiGa/gstws/public/"
-      WEB_ALIAS_DOMAIN: "nagra-dev.giga-infosystems.com"
+      WEB_DOCUMENT_ROOT: "/home/adminplasma/var/geoplasma/geoplasma/"
+      WEB_ALIAS_DOMAIN: "portal.geoplasma-ce.eu"
       WEB_DOCUMENT_INDEX: "index.php"
     ports:
-      - "8080:80"
-      - "8443:443"
+      - "80:80"
+      - "443:443"
     volumes:
-      - "webroot:/usr/GiGa/gstws/"
-      - "internalssl:/usr/GiGa/gstws/public/sslcert"
-      - "letsencrypt:/etc/letsencrypt"
+      - "internalssl:/etc/GiGa/ssl"
+      - "/home/adminplasma/var/geoplasma/geoplasma/letsencrypt:/etc/letsencrypt"
       - "logs:/var/log/apache2"
       - "stats:/var/lib/awstats"
       # geoplasma stuff
-      - "VOLUME:/var/www/html/backend"
-      - "VOLUME:/var/www/html/frontend"
-      - "VOLUME:/var/www/html/content"
+      - "/home/adminplasma/var/geoplasma/geoplasma/backend:/var/www/html/backend"
+      - "/home/adminplasma/var/geoplasma/geoplasma/frontend:/var/www/html/frontend"
+      - "/home/adminplasma/var/geoplasma/uploadContent:/var/www/html/content"
     networks:
       internal:
         aliases:
           - apache
+          - portal.geoplasma-ce.eu
+          - api.geoplasma-ce.eu
+          - downloads.geoplasma-ce.eu
         ipv4_address: 192.168.7.4
   gst-server:
-    user: "101:101"
-    ports:
-      - "50052:50051"
+    #ports:
+    #  - "50052:50051"
     build:
       context: gst-server
       dockerfile: Dockerfile
     volumes:
       - "internalssl:/etc/GiGa/ssl"
-      - /etc/GiGa/license:/etc/GiGa/license
-      - "gstdata:/data"
+      - /home/adminplasma/var/geoplasma/license:/etc/GiGa/license
+      - "/home/adminplasma/var/geoplasma/gstdata:/var/lib/gstdata/"
     restart: 'always'
     networks:
       internal:
@@ -64,13 +64,13 @@ services:
           - gst
         ipv4_address: 192.168.7.5
   geoserver:
-    ports:
-      - "8080:8080"
+    #ports:
+    #  - "8080:8080"
     image: docker.osgeo.org/geoserver:2.23.1
     environment:
       -  SKIP_DEMO_DATA=true
     volumes:
-      - "gstdata:/data"
+      - "/home/adminplasma/var/geoplasma/geoserver_data:/opt/geoserver_data/"
     restart: 'always'
     networks:
       internal:
@@ -86,7 +86,6 @@ volumes:
   letsencrypt:
   logs:
   stats:
-  VOLUME:
 
 networks:
   internal:

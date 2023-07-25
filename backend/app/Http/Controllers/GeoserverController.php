@@ -58,7 +58,8 @@ class GeoserverController extends Controller
         $client = new Client();
 
         $res = $client->request('GET', $url.'/geoserver/'.$workspace.'/wms?service=wms&request=GetCapabilities&namespace='.$workspace, [
-                'auth' => [$this->geoserver_user, $this->geoserver_pwd]
+                'auth' => [$this->geoserver_user, $this->geoserver_pwd],
+                'verify' => false
             ]);
 
         $data = $res->getBody();
@@ -74,7 +75,8 @@ class GeoserverController extends Controller
 
             $legends = [];
             $res = $client->request('GET', $url.'/geoserver/wms?request=GetStyles&service=WMS&layers='.$layernames.'&version=1.1.1', [
-                'auth' => [$this->geoserver_user, $this->geoserver_pwd]
+                'auth' => [$this->geoserver_user, $this->geoserver_pwd],
+                'verify' => false
             ]);
             $data = $res->getBody();
             $xml2 = simplexml_load_string($data, null, 0, 'sld', true);
@@ -171,7 +173,8 @@ class GeoserverController extends Controller
         $client = new Client();
 
         $res = $client->request('GET', $url.'/geoserver/wms?request=GetFeatureInfo&service=WMS&'.$link, [
-                'auth' => [$this->geoserver_user, $this->geoserver_pwd]
+                'auth' => [$this->geoserver_user, $this->geoserver_pwd],
+                'verify' => false
             ]);
 
         // Parse the response from the WMS request
@@ -227,7 +230,8 @@ class GeoserverController extends Controller
 
         $client = new Client();
         $res = $client->request('GET', $url.'/geoserver/'.$area.'/wms?request=GetFeatureInfo&service=WMS&'.$link, [
-                'auth' => [$this->geoserver_user, $this->geoserver_pwd]
+                'auth' => [$this->geoserver_user, $this->geoserver_pwd],
+                'verify' => false
             ]);
 
         // Parse the response from the WMS request
@@ -804,13 +808,15 @@ class GeoserverController extends Controller
 
                     $res = $client->request('DELETE', $geoserver.'/geoserver/rest/layers/'.$workspace.':'.$name, [
                             'auth' => [$this->geoserver_user, $this->geoserver_pwd],
-                            "headers" => ["content-type" => "application/json"]
+                            "headers" => ["content-type" => "application/json"],
+                            'verify' => false
                         ]);
 
                     $client = new Client();
                     $res = $client->request('DELETE', $geoserver.'/geoserver/rest/workspaces/'.$workspace.'/'.$url.'/'.$name.'?purge=none&recurse=true', [
                             'auth' => [$this->geoserver_user, $this->geoserver_pwd],
-                            "headers" => ["content-type" => "application/json"]
+                            "headers" => ["content-type" => "application/json"],
+                            'verify' => false
                         ]);
 
                     $response = $res->getStatusCode();
@@ -861,7 +867,8 @@ class GeoserverController extends Controller
                 $res = $client->request('POST', $geoserver.'/geoserver/rest/workspaces/'.$workspace.'/'.$url, [
                         'auth' => [$this->geoserver_user, $this->geoserver_pwd],
                         'body' => json_encode($body),
-                        "headers" => ["content-type" => "application/json"]
+                        "headers" => ["content-type" => "application/json"],
+                        'verify' => false
                     ]);
 
                 $response = $res->getStatusCode();
@@ -879,7 +886,8 @@ class GeoserverController extends Controller
                     $res = $client->request('POST', $geoserver.'/geoserver/rest/workspaces/'.$workspace.'/'.$url.'/'.$name.'/'.$datatype, [
                             'auth' => [$this->geoserver_user, $this->geoserver_pwd],
                             'body' => json_encode($body),
-                            "headers" => ["content-type" => "application/json"]
+                            "headers" => ["content-type" => "application/json"],
+                            'verify' => false
                         ]);
 
                     $response = $res->getStatusCode();
@@ -940,7 +948,8 @@ class GeoserverController extends Controller
                         $res = $client->request('PUT', $geoserver.'/geoserver/rest/workspaces/'.$workspace.'/'.$url.'/'.$name.'/'.$datatype.'/'.$name, [
                                 'auth' => [$this->geoserver_user, $this->geoserver_pwd],
                                 'body' => json_encode($body),
-                                "headers" => ["content-type" => "application/json"]
+                                "headers" => ["content-type" => "application/json"],
+                                'verify' => false
                             ]);
 
                         $response = $res->getStatusCode();
@@ -972,7 +981,8 @@ class GeoserverController extends Controller
                             $res = $client->request('PUT', $geoserver.'/geoserver/rest/layers/'.$workspace.':'.$name, [
                                     'auth' => [$this->geoserver_user, $this->geoserver_pwd],
                                     'body' => json_encode($body),
-                                    "headers" => ["content-type" => "application/json"]
+                                    "headers" => ["content-type" => "application/json"],
+                                    'verify' => false
                                 ]);
 
                             $response = $res->getStatusCode();
@@ -1256,7 +1266,8 @@ class GeoserverController extends Controller
       $client = new Client();
       $geoserver = $this->getUrl($request->url());
       $res = $client->request('GET', $url.'/geoserver/general/wms?service=wms&request=GetCapabilities&namespace=general', [
-              'auth' => [$this->geoserver_user, $this->geoserver_pwd]
+              'auth' => [$this->geoserver_user, $this->geoserver_pwd],
+              'verify' => false
           ]);
 
       $data = $res->getBody();
@@ -1276,14 +1287,16 @@ class GeoserverController extends Controller
 
         $res = $client->request('DELETE', $url.'/geoserver/rest/layers/general:Pilot_Areas', [
                 'auth' => [$this->geoserver_user, $this->geoserver_pwd],
-                "headers" => ["content-type" => "application/json"]
+                "headers" => ["content-type" => "application/json"],
+                'verify' => false
             ]);
 
         $client = new Client();
 
         $res = $client->request('DELETE', $url.'/geoserver/rest/workspaces/general/datastores/Pilot_Areas?purge=none&recurse=true', [
                 'auth' => [$this->geoserver_user, $this->geoserver_pwd],
-                "headers" => ["content-type" => "application/json"]
+                "headers" => ["content-type" => "application/json"],
+                'verify' => false
             ]);
 
 
@@ -1314,7 +1327,8 @@ class GeoserverController extends Controller
       $res = $client->request('POST', $geoserver.'/geoserver/rest/workspaces/general/'.$url, [
               'auth' => [$this->geoserver_user, $this->geoserver_pwd],
               'body' => json_encode($body),
-              "headers" => ["content-type" => "application/json"]
+              "headers" => ["content-type" => "application/json"],
+              'verify' => false
           ]);
 
       $response = $res->getStatusCode();
@@ -1330,7 +1344,8 @@ class GeoserverController extends Controller
         $res = $client->request('POST', $geoserver.'/geoserver/rest/workspaces/general/'.$url.'/Pilot_Areas/'.$datatype, [
                 'auth' => [$this->geoserver_user, $this->geoserver_pwd],
                 'body' => json_encode($body),
-                "headers" => ["content-type" => "application/json"]
+                "headers" => ["content-type" => "application/json"],
+                'verify' => false
             ]);
 
         $response = $res->getStatusCode();
@@ -1357,7 +1372,8 @@ class GeoserverController extends Controller
             $res = $client->request('PUT', $geoserver.'/geoserver/rest/workspaces/general/'.$url.'/Pilot_Areas/'.$datatype.'/Pilot_Areas', [
                     'auth' => [$this->geoserver_user, $this->geoserver_pwd],
                     'body' => json_encode($body),
-                    "headers" => ["content-type" => "application/json"]
+                    "headers" => ["content-type" => "application/json"],
+                    'verify' => false
                 ]);
 
             $response = $res->getStatusCode();
@@ -1381,7 +1397,8 @@ class GeoserverController extends Controller
                 $res = $client->request('PUT', $geoserver.'/geoserver/rest/layers/general:Pilot_Areas', [
                         'auth' => [$this->geoserver_user, $this->geoserver_pwd],
                         'body' => json_encode($body),
-                        "headers" => ["content-type" => "application/json"]
+                        "headers" => ["content-type" => "application/json"],
+                        'verify' => false
                     ]);
 
                 $response = $res->getStatusCode();
@@ -1408,7 +1425,8 @@ class GeoserverController extends Controller
         $client = new Client();
 
         $res = $client->request('GET', $url.'/geoserver/wfs?service=wfs&request=GetFeature&typeNames=walbrzych-broumov:ID10_PP0508_PA02_OP28_01&count=10&CQL_FILTER=DWITHIN(the_geom,Point('.$coords[0].' '.$coords[1].'),1000,meters)&outputFormat=JSON', [
-                'auth' => [$this->geoserver_user, $this->geoserver_pwd]
+                'auth' => [$this->geoserver_user, $this->geoserver_pwd],
+                'verify' => false
             ]);
             
         $data = $res->getBody();

@@ -1,16 +1,29 @@
 FROM php:7.2-apache-stretch
 CMD ["/bin/bash"]
 # the following fixes some issues with GBA's proxy and firewall, c.f. https://askubuntu.com/a/809808/648883
-RUN echo "Acquire::http::Pipeline-Depth 0;" >> /etc/apt/apt.conf.d/99fixbadproxy
-RUN echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf.d/99fixbadproxy
-RUN echo "Acquire::BrokenProxy    true;" >> /etc/apt/apt.conf.d/99fixbadproxy
-RUN echo "Acquire::https::No-Cache true;" >> /etc/apt/apt.conf.d/99fixbadproxy
+RUN echo "Acquire::http::Pipeline-Depth 0;" >> /etc/apt/apt.conf.d/99fixbadproxy &&\
+ echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf.d/99fixbadproxy &&\
+ echo "Acquire::BrokenProxy    true;" >> /etc/apt/apt.conf.d/99fixbadproxy &&\
+ echo "Acquire::https::No-Cache true;" >> /etc/apt/apt.conf.d/99fixbadproxy
+
+# make sure to use the archives
+# I don't know where that buser list is coming from
+RUN rm -rf /etc/apt/sources.list.d/buster.list &&\
+    sed -i \
+    -e 's#stretch-updates#stretch-backports#g' /etc/apt/sources.list \
+    -e 's#deb http://deb#deb http://archive#g' /etc/apt/sources.list \
+    -e 's#deb http://security#deb http://archive#g' /etc/apt/sources.list
+
+
 # GBA's firewall doesn't allow some access, so we tell the host where to look for it
 RUN echo "portal.geoplasma-ce.eu" >> /etc/hosts
 RUN echo "api.geoplasma-ce.eu" >> /etc/hosts
-RUN apt-get update && apt-get install -y wget gnupg
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" >> /etc/apt/sources.list.d/pgdg.list
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN apt-get update && apt-get install -y wget gnupg apt-transport-https
+#RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" >> /etc/apt/sources.list.d/pgdg.list
+
+RUN echo "deb https://apt-archive.postgresql.org/pub/repos/apt stretch-pgdg-archive main" >> /etc/apt/sources.list.d/pgdg.list
+
+RUN wget --no-check-certificate --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
 RUN apt-get update && apt-get install -y \ 
     postgresql-server-dev-9.6 postgresql-9.6 postgresql-9.6-postgis-2.4 postgresql-9.6-postgis-2.4-scripts \
